@@ -4,9 +4,11 @@ const CONFIG = {
   // Paste your Formspree form URL here (see SETUP-INTAKE.md). Looks like https://formspree.io/f/abcdwxyz
   formEndpoint: "https://formspree.io/f/YOUR_FORM_ID",
 
-  // Shown on the thank-you message.
-  deliveryEn: "7 days",
-  deliveryMy: "ရက် ၇ ရက်"
+  // Delivery time shown on the thank-you message.
+  deliveryDefault: "3 days",
+  deliveryLonger: "5 to 7 days",
+  // Packages that take the longer time (names must match the dropdown exactly).
+  longerPackages: ["Ultimate Bundle", "Cosmic Roadmap"]
 };
 
 (function () {
@@ -19,9 +21,6 @@ const CONFIG = {
   const timeUnsure = document.getElementById("time_unsure");
   const timeNoteWrap = document.getElementById("time_note_wrap");
   const timeReq = document.getElementById("time-req");
-
-  document.querySelectorAll("[data-delivery-en]").forEach(function (el) { el.textContent = CONFIG.deliveryEn; });
-  document.querySelectorAll("[data-delivery-my]").forEach(function (el) { el.textContent = CONFIG.deliveryMy; });
 
   // "I'm not sure of my time": time becomes optional and a note field appears.
   timeUnsure.addEventListener("change", function () {
@@ -103,6 +102,8 @@ const CONFIG = {
   function showThanks() {
     const first = form.elements["full_name"].value.trim().split(/\s+/)[0];
     if (first) document.getElementById("thanks-name").textContent = first;
+    const longer = CONFIG.longerPackages.indexOf(form.elements["package"].value) !== -1;
+    document.querySelector("[data-delivery-en]").textContent = longer ? CONFIG.deliveryLonger : CONFIG.deliveryDefault;
     form.hidden = true;
     thanks.hidden = false;
     thanks.focus();

@@ -57,7 +57,7 @@ All in `intake.js` (top of the file) or `intake.html`:
 
 | What | Where |
 |------|-------|
-| Delivery time on the thank-you message | `deliveryEn` and `deliveryMy` in `intake.js`. Currently **7 days** (the Transit reading on your site says 5–7 days). |
+| Delivery times on the thank-you message | `deliveryDefault` (3 days), `deliveryLonger` (5 to 7 days) and `longerPackages` (Ultimate Bundle, Cosmic Roadmap) in `intake.js`. |
 | Reading packages in the dropdown | The `<select id="package">` block in `intake.html`. It matches your current menu; add or remove `<option>` lines. |
 | Colours | The `:root` block at the top of `intake.css` |
 
