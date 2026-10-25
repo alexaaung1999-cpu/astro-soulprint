@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Client Intake · Astro Soulprint by Alex</title>
+  <meta name="description" content="Reading intake form for Astro Soulprint by Alex clients.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#faf6ee">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23402615'/%3E%3Cpath d='M32 12l4.5 15.5L52 32l-15.5 4.5L32 52l-4.5-15.5L12 32l15.5-4.5z' fill='%23d6c8b1'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500;600&family=Noto+Sans+Myanmar:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="intake.css">
+</head>
+<body>
+
+  <header class="top">
+    <p class="eyebrow">Astro Soulprint <span>by Alex</span></p>
+    <h1>Client Intake</h1>
+    
+    <p class="lead">Thank you for booking your reading. Please share a few details so I can prepare everything with care before we begin.</p>
+  </header>
+
+  <main>
+    <form id="intake" class="card" novalidate>
+      <!-- Spam trap: real people never see or fill this. -->
+      <div class="trap" aria-hidden="true">
+        <label>Leave this empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <!-- About you -->
+      <fieldset>
+        <legend><span class="en">About you</span></legend>
+
+        <div class="field">
+          <label for="full_name">
+            
+            <span class="en">Full name <i class="req" aria-hidden="true">*</i></span>
+          </label>
+          <input id="full_name" name="full_name" type="text" autocomplete="name" required>
+        </div>
+
+        <div class="field">
+          <label for="facebook_name">
+            
+            <span class="en">Facebook name <i class="req" aria-hidden="true">*</i></span>
+          </label>
+          <input id="facebook_name" name="facebook_name" type="text" autocomplete="off" required>
+          <p class="hint"><span class="en">The name you messaged me with, so I can find your order.</span></p>
+        </div>
+
+        <div class="field">
+          <label for="package">
+            
+            <span class="en">Reading package purchased <i class="req" aria-hidden="true">*</i></span>
+          </label>
+          <div class="select-wrap">
+            <select id="package" name="package" required>
+              <option value="" selected disabled>Choose your package…</option>
+              <optgroup label="Aligned Love">
+                <option>Aligned Love — Mini</option>
+                <option>HD Love</option>
+                <option>Synastry Chart Package</option>
+              </optgroup>
+              <optgroup label="Aligned Wealth &amp; Career">
+                <option>Aligned Wealth &amp; Career — Mini</option>
+                <option>HD Wealth &amp; Career</option>
+              </optgroup>
+              <optgroup label="Karmic Healing &amp; Aura Protection">
+                <option>Karmic Healing &amp; Aura Protection — Mini</option>
+                <option>HD Healing</option>
+              </optgroup>
+              <optgroup label="Cosmic Timing">
+                <option>Transit — 3 Months</option>
+                <option>Transit — 6 Months</option>
+                <option>Progressed Chart</option>
+              </optgroup>
+              <optgroup label="Bundles">
+                <option>Ultimate Bundle</option>
+                <option>Cosmic Roadmap</option>
+              </optgroup>
+              <optgroup label="Soulprint Core">
+                <option>HD 4 Arrows</option>
+                <option>Birth Chart — Full Chart</option>
+                <option>Human Design — Full Chart</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Birth details -->
+      <fieldset>
+        <legend><span class="en">Birth details</span></legend>
+
+        <div class="field">
+          <label for="birth_date">
+            
+            <span class="en">Date of birth <i class="req" aria-hidden="true">*</i></span>
+          </label>
+          <input id="birth_date" name="birth_date" type="date" min="1900-01-01" required>
+        </div>
+
+        <div class="field">
+          <label for="birth_time">
+            
+            <span class="en">Exact birth time <i class="req" aria-hidden="true" id="time-req">*</i></span>
+          </label>
+          <input id="birth_time" name="birth_time" type="time" required>
+
+          <label class="check inline" for="time_unsure">
+            <input id="time_unsure" name="birth_time_unsure" type="checkbox" value="Yes">
+            <span class="box" aria-hidden="true"></span>
+            <span class="txt"><span class="en">I’m not sure of my time</span></span>
+          </label>
+
+          <div class="field sub-field" id="time_note_wrap" hidden>
+            <label for="time_note">
+              
+              <span class="en">Anything you remember (optional)</span>
+            </label>
+            <input id="time_note" name="birth_time_note" type="text" placeholder="e.g. early morning, around noon, after sunset">
+            <p class="hint"><span class="en">That’s completely okay. I’ll let you know what we can still read clearly.</span></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="birth_city">
+              
+              <span class="en">Birth city <i class="req" aria-hidden="true">*</i></span>
+            </label>
+            <input id="birth_city" name="birth_city" type="text" autocomplete="off" required>
+          </div>
+          <div class="field">
+            <label for="birth_country">
+              
+              <span class="en">Country <i class="req" aria-hidden="true">*</i></span>
+            </label>
+            <input id="birth_country" name="birth_country" type="text" autocomplete="off" required>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Your reading -->
+      <fieldset>
+        <legend><span class="en">Your reading</span></legend>
+
+        <div class="field">
+          <label for="question">
+            
+            <span class="en">Main question or focus <i class="req" aria-hidden="true">*</i></span>
+          </label>
+          <textarea id="question" name="main_question" rows="5" required></textarea>
+          <p class="hint"><span class="en">Share as much or as little as feels right. You can write in Burmese or English.</span></p>
+        </div>
+
+        <div class="field" id="focus-group" role="group" aria-labelledby="focus-label">
+          <span class="label" id="focus-label">
+            
+            <span class="en">Life area focus (choose all that apply) <i class="req" aria-hidden="true">*</i></span>
+          </span>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="life_area" value="Love"><span>Love</span></label>
+            <label class="chip"><input type="checkbox" name="life_area" value="Career & Money"><span>Career &amp; Money</span></label>
+            <label class="chip"><input type="checkbox" name="life_area" value="Healing"><span>Healing</span></label>
+            <label class="chip"><input type="checkbox" name="life_area" value="Timing"><span>Timing</span></label>
+            <label class="chip"><input type="checkbox" name="life_area" value="General"><span>General</span></label>
+          </div>
+          <p class="error" id="focus-error" role="alert" hidden>Please choose at least one life area.</p>
+        </div>
+
+        <div class="field" id="format-group" role="radiogroup" aria-labelledby="format-label">
+          <span class="label" id="format-label">
+            
+            <span class="en">Preferred delivery format <i class="req" aria-hidden="true">*</i></span>
+          </span>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="delivery_format" value="Voice message" required><span>Voice message</span></label>
+            <label class="chip"><input type="radio" name="delivery_format" value="PDF"><span>PDF</span></label>
+            <label class="chip"><input type="radio" name="delivery_format" value="Both"><span>Both</span></label>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Consent -->
+      <div class="field consent">
+        <label class="check" for="consent">
+          <input id="consent" name="consent" type="checkbox" value="Confirmed" required>
+          <span class="box" aria-hidden="true"></span>
+          <span class="txt">
+            
+            <span class="en">I confirm the details above are accurate. <i class="req" aria-hidden="true">*</i></span>
+          </span>
+        </label>
+      </div>
+
+      <p class="error form-error" id="form-error" role="alert" hidden></p>
+
+      <button class="btn" type="submit" id="submit">
+        <span class="en">Send my details</span>
+      </button>
+      <p class="privacy">Your details are only used to prepare your reading.</p>
+    </form>
+
+    <!-- Thank-you state -->
+    <section id="thanks" class="card thanks" tabindex="-1" hidden>
+      <div class="star" aria-hidden="true">✦</div>
+      <h2>Thank you, <span id="thanks-name">lovely</span> 🤎</h2>
+      <p>I’ve received your details and I’m so grateful for your trust. Your reading will be delivered within <strong data-delivery-en></strong>.</p>
+      <p class="soft">If you remember anything more, or have a question while you wait, just message me on Messenger.</p>
+      <a class="btn btn-ghost" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Message Alex</a>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <a href="index.html">← Astro Soulprint by Alex</a>
+  </footer>
+
+  <script src="intake.js"></script>
+</body>
+</html>

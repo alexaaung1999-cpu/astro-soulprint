@@ -17,3 +17,7 @@ Single-page site: `index.html` + `style.css`. No build step.
   `<span class="alt">· 1,234 THB</span>`.
 - Testimonials: add `testimonial-1.jpg` … `testimonial-6.jpg` to `images/testimonials/`.
 - Colours: the `:root` block at the top of `style.css`.
+
+## Client intake form
+
+`intake.html` (+ `intake.css`, `intake.js`) is the post-payment intake form. Setup steps: see `SETUP-INTAKE.md`.
