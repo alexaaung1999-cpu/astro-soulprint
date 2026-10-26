@@ -124,7 +124,7 @@ input:focus, select:focus { outline: none; border-color: var(--emerald-soft); bo
 .bodygraph { display: block; width: 100%; height: auto; }
 .bg-gate { font-family: var(--sans); font-size: 5.2px; font-weight: 700; }
 .bg-gate.on { fill: #fff; }
-.bg-gate.off { fill: #8a7440; font-weight: 500; font-size: 5.2px; }
+.bg-gate.off { fill: #5b4a2a; font-weight: 500; font-size: 5.3px; }
 .bg-col-title { font-family: var(--sans); font-size: 8px; font-weight: 700; letter-spacing: 0.1em; }
 .bg-col-name { font-family: var(--sans); font-size: 8px; font-weight: 500; }
 .bg-col-val { font-family: var(--sans); font-size: 10px; font-weight: 700; }
