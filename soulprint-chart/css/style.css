@@ -122,10 +122,10 @@ input:focus, select:focus { outline: none; border-color: var(--emerald-soft); bo
 .bodygraph-card { max-width: 560px; margin: 0 auto 22px; padding: 18px 6px 18px; }
 .bodygraph-wrap { max-width: 520px; margin: 0 auto; }
 .bodygraph { display: block; width: 100%; height: auto; }
-.bg-gate { font-family: var(--sans); font-size: 9.5px; font-weight: 700; }
+.bg-gate { font-family: var(--sans); font-size: 5.2px; font-weight: 700; }
 .bg-gate.on { fill: #fff; }
-.bg-gate.off { fill: #9c8450; font-weight: 500; font-size: 8.8px; }
-.bg-col-title { font-family: var(--sans); font-size: 8.5px; font-weight: 700; letter-spacing: 0.1em; }
+.bg-gate.off { fill: #8a7440; font-weight: 500; font-size: 5.2px; }
+.bg-col-title { font-family: var(--sans); font-size: 8px; font-weight: 700; letter-spacing: 0.1em; }
 .bg-col-name { font-family: var(--sans); font-size: 8px; font-weight: 500; }
 .bg-col-val { font-family: var(--sans); font-size: 10px; font-weight: 700; }
 
