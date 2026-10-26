@@ -333,3 +333,15 @@ a.card:hover, a.card:focus-visible { transform: translateY(-3px); box-shadow: 0 
 .more-info[open] summary::after { content: " −"; }
 .more-info .sparkles { margin-top: 10px; font-size: 0.9rem; color: var(--ink); }
 .more-info .req { margin: 10px 0 0; color: var(--gold-text); font-size: 0.9rem; }
+
+.pay-note { margin: 26px auto 0; max-width: 560px; background: var(--white); border: 1px solid var(--gold); border-radius: 20px; padding: 20px 18px; text-align: center; }
+.pay-note p:last-child { margin-bottom: 0; color: var(--ink); font-size: 0.95rem; }
+.long { margin-top: 12px; font-size: 0.92rem; }
+.long p { margin: 0 0 12px; }
+.long h5 { font-family: var(--sans); font-size: 0.95rem; font-weight: 600; color: var(--emerald-deep); margin: 14px 0 2px; }
+.long h5::before { content: "✦ "; color: var(--gold); }
+.long h5 + p { margin-bottom: 8px; color: var(--muted); }
+.long .lead-in { margin-top: 16px; font-weight: 600; }
+.long .exchange { margin: 16px 0 6px; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-text); font-weight: 600; }
+.long .sparkles { margin-bottom: 12px; }
+.long .closing { color: var(--emerald-deep); font-family: var(--serif); font-size: 1.15rem; line-height: 1.4; }
