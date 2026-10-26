@@ -2,7 +2,7 @@
    The two settings below are the only things you should need to edit. */
 const CONFIG = {
   // Paste your Formspree form URL here (see SETUP-INTAKE.md). Looks like https://formspree.io/f/abcdwxyz
-  formEndpoint: "https://formspree.io/f/YOUR_FORM_ID",
+  formEndpoint: "https://formspree.io/f/xpppqwev",
 
   // Delivery time shown on the thank-you message.
   deliveryDefault: "3 days",
