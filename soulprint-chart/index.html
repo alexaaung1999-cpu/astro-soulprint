@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Soulprint Chart · Free Human Design Chart · Astro Soulprint by Alex</title>
+  <meta name="description" content="Free Soulprint Chart calculator. Enter your birth details to see your Human Design Type, Strategy, Authority, Profile and energy map.">
+  <meta name="theme-color" content="#faf6ee">
+
+  <!-- Facebook / Messenger link preview. Add an absolute og:image URL once the site is live if you want a preview picture. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Your Soulprint Chart · Free Human Design Chart">
+  <meta property="og:description" content="Free and private. See your Type, Strategy, Authority, Profile and energy map in one minute.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230d5c47'/%3E%3Cpath d='M32 12l4.5 15.5L52 32l-15.5 4.5L32 52l-4.5-15.5L12 32l15.5-4.5z' fill='%23ecd9a0'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&family=Noto+Sans+Myanmar:wght@400;500;600&family=Noto+Serif+Myanmar:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="../" aria-label="Astro Soulprint by Alex, main website">
+        <img class="brand-logo" src="assets/logo.png" alt="" width="36" height="36" onerror="this.remove()">
+        <span class="brand-text">Astro Soulprint <em>by Alex</em></span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. INTRO + FORM -->
+    <section class="hero" id="top">
+      <div class="wrap narrow center">
+        <p class="eyebrow">Free &middot; Human Design</p>
+        <h1>Your Soulprint Chart</h1>
+        <p class="lead">A gentle map of how your energy is designed to move. Enter your birth details and see your Type, Strategy, Inner Authority and more in about a minute.</p>
+        <p class="my-slot" lang="my" id="introMy" hidden></p>
+      </div>
+
+      <div class="wrap narrow">
+        <form class="card form-card" id="chartForm" novalidate autocomplete="off">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" maxlength="60" placeholder="Your first name" autocapitalize="words" required>
+          </div>
+
+          <fieldset class="field">
+            <legend>Birth date</legend>
+            <div class="row3">
+              <select id="day" aria-label="Day" required></select>
+              <select id="month" aria-label="Month" required></select>
+              <input id="year" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="Year" aria-label="Year" required>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>Exact birth time</legend>
+            <div class="row3">
+              <select id="hour" aria-label="Hour" required></select>
+              <select id="minute" aria-label="Minute" required></select>
+              <select id="ampm" aria-label="AM or PM" required>
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </select>
+            </div>
+            <p class="hint">Don&rsquo;t know your exact time? Use your best estimate. <span class="hint-soft">(12:00 AM is midnight and 12:00 PM is noon.)</span></p>
+          </fieldset>
+
+          <div class="field">
+            <label for="country">Birth country</label>
+            <select id="country" required></select>
+          </div>
+
+          <div class="field combo">
+            <label for="city">Birth city or town</label>
+            <input id="city" type="text" maxlength="80" placeholder="e.g. Yangon" autocomplete="off" autocapitalize="words" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="citySuggest" required>
+            <ul id="citySuggest" class="suggest" role="listbox" hidden></ul>
+          </div>
+
+          <div class="field" id="zoneField" hidden>
+            <label for="zone">Time zone</label>
+            <select id="zone"></select>
+            <p class="hint" id="zoneHint">This country has more than one time zone. Pick your city above and we will fill this in, or choose the closest one.</p>
+          </div>
+
+          <p class="form-error" id="formError" role="alert" hidden></p>
+
+          <button class="btn btn-block" type="submit" id="submitBtn">Show my Soulprint Chart</button>
+          <p class="privacy">&#10022; Calculated privately on your phone. Your details are never saved or sent anywhere.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- 2. RESULTS (hidden until the form is sent) -->
+    <section class="results" id="results" hidden aria-live="polite">
+      <div class="wrap">
+        <div class="results-head center">
+          <p class="eyebrow">Your energy map</p>
+          <h2 id="resultsTitle" tabindex="-1">Your Soulprint Chart</h2>
+          <p class="sub" id="resultsSub"></p>
+          <p class="notice" id="resultsNotice" hidden></p>
+        </div>
+
+        <div class="card bodygraph-card">
+          <div id="bodygraph" class="bodygraph-wrap"></div>
+          <ul class="legend" aria-label="Chart key">
+            <li><span class="swatch sw-p"></span>Personality (conscious)</li>
+            <li><span class="swatch sw-d"></span>Design (unconscious)</li>
+            <li><span class="swatch sw-def"></span>Defined center</li>
+            <li><span class="swatch sw-open"></span>Open center</li>
+          </ul>
+        </div>
+
+        <div class="cards" id="summaryCards"></div>
+
+        <div class="card" id="centersCard"></div>
+
+        <div class="card" id="channelsCard"></div>
+
+        <div class="card" id="gatesCard"></div>
+
+        <p class="fine center" id="accuracyNote">Small changes in birth time can move your Moon, your lines and sometimes your Profile. If you gave an estimate, treat this as a lovely first look.</p>
+
+        <!-- 3. SOFT INVITATION TO A READING -->
+        <div class="invite" id="invite">
+          <p class="eyebrow light">Next step</p>
+          <h2>Your chart shows your energy map. A reading shows you how to live it.</h2>
+          <p class="invite-my" lang="my" id="inviteMy" hidden></p>
+          <div class="invite-actions" id="inviteActions"></div>
+        </div>
+
+        <p class="center"><a class="btn btn-ghost" href="#top" id="againBtn">Calculate another chart</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 4. FOOTER -->
+  <footer class="footer">
+    <div class="wrap center">
+      <p class="footer-brand">Astro Soulprint <span>by Alex</span></p>
+      <p class="footer-tag">Not a prediction. A map back to who you are.</p>
+      <div class="footer-actions">
+        <a class="btn btn-light" id="footMessenger" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Message on Messenger</a>
+        <a class="btn btn-outline-light" id="footFacebook" href="https://www.facebook.com/profile.php?id=61561494154512" target="_blank" rel="noopener">Facebook Page</a>
+      </div>
+      <p class="small">The Human Design system was originated by Ra Uru Hu.</p>
+      <p class="tiny">&copy; <span id="footYear">2026</span> Astro Soulprint by Alex &middot; Planet positions by astronomy-engine (MIT) &middot; City data from GeoNames (CC BY 4.0)</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="data/countries.js"></script>
+  <script src="js/vendor/astronomy.browser.min.js"></script>
+  <script src="js/hd-data.js"></script>
+  <script src="js/hd-calc.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/bodygraph.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

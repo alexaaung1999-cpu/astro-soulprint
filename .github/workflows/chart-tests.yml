@@ -1,0 +1,21 @@
+name: Soulprint Chart tests
+on:
+  push:
+    paths: ['soulprint-chart/**']
+  pull_request:
+    paths: ['soulprint-chart/**']
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: soulprint-chart
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: soulprint-chart/package-lock.json
+      - run: npm ci
+      - run: npm test
