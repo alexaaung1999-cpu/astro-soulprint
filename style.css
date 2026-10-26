@@ -198,7 +198,7 @@ h4 { font-size: 1.4rem; margin-bottom: 8px; }
 .card .desc { color: var(--muted); font-size: 0.95rem; }
 .card .sparkles { margin: 4px 0 14px; font-size: 0.95rem; }
 .card .price { margin-top: auto; padding-top: 10px; margin-bottom: 16px; }
-.price .mmk { font-family: var(--serif); font-size: 1.7rem; font-weight: 600; color: var(--emerald-deep); display: block; line-height: 1.2; }
+.price .mmk { font-family: var(--sans); font-size: 1.55rem; font-weight: 600; letter-spacing: -0.01em; color: var(--emerald-deep); display: block; line-height: 1.25; }
 .price .alt { display: block; color: var(--muted); font-size: 0.88rem; }
 .card-link { text-decoration: none; }
 .card .more { margin-top: auto; color: var(--emerald-deep); font-weight: 600; font-size: 0.95rem; padding-top: 6px; }
@@ -226,7 +226,7 @@ a.card:hover, a.card:focus-visible { transform: translateY(-3px); box-shadow: 0 
 .offer-box { background: var(--white); border: 1px solid var(--gold-line); border-radius: 20px; padding: 22px 18px; margin: 20px 0; text-align: center; }
 .offer-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-text); margin-bottom: 6px; font-weight: 600; }
 .offer-price { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 4px 14px; margin-bottom: 4px; color: var(--muted); font-size: 0.92rem; }
-.offer-price strong { font-family: var(--serif); font-size: 2rem; color: var(--emerald-deep); line-height: 1.2; }
+.offer-price strong { font-family: var(--sans); font-size: 1.75rem; font-weight: 600; letter-spacing: -0.01em; color: var(--emerald-deep); line-height: 1.25; }
 .offer-regular { color: var(--muted); font-size: 0.88rem; margin-bottom: 4px; }
 .offer-box .sparkles { text-align: left; margin: 16px 0 0; font-size: 0.92rem; }
 .regular { display: none; }
@@ -246,7 +246,7 @@ a.card:hover, a.card:focus-visible { transform: translateY(-3px); box-shadow: 0 
 .bundle { background: linear-gradient(160deg, var(--emerald-soft), var(--white)); border: 1.5px solid var(--gold); border-radius: 28px; padding: 30px 22px; text-align: center; box-shadow: var(--shadow); margin-bottom: 30px; }
 .bundle .sparkles { display: inline-block; text-align: left; margin: 14px 0; }
 .bundle-price s { display: block; color: var(--muted); font-size: 0.9rem; }
-.bundle-price strong { display: block; font-family: var(--serif); font-size: 2.3rem; color: var(--emerald-deep); line-height: 1.2; }
+.bundle-price strong { display: block; font-family: var(--sans); font-size: 2rem; font-weight: 600; letter-spacing: -0.01em; color: var(--emerald-deep); line-height: 1.25; }
 .bundle-alt { color: var(--muted); }
 .bundle-save { color: var(--gold-text); font-weight: 500; margin: 8px 0 18px; }
 
@@ -318,3 +318,18 @@ a.card:hover, a.card:focus-visible { transform: translateY(-3px); box-shadow: 0 
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+/* chips, PDF highlight, reading details */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+.chip { display: inline-block; padding: 3px 12px; border-radius: 999px; border: 1px solid var(--gold-line); background: var(--cream); color: var(--muted); font-size: 0.78rem; }
+.pdf-badge { display: inline-block; margin: 0 0 16px; padding: 7px 18px; border-radius: 999px; background: #f6ecd6; border: 1px solid var(--gold); color: var(--gold-text); font-weight: 600; font-size: 0.9rem; }
+.pdf-badge::before { content: "✦ "; }
+.sparkles li.pdf { background: #f6ecd6; border: 1px solid var(--gold-line); border-radius: 14px; padding: 8px 12px 8px 36px; font-weight: 500; }
+.sparkles li.pdf::before { left: 12px; top: 8px; }
+.more-info { margin: 0 0 14px; border-top: 1px solid var(--gold-line); padding-top: 10px; }
+.more-info summary { cursor: pointer; color: var(--emerald-deep); font-weight: 600; font-size: 0.95rem; list-style: none; }
+.more-info summary::-webkit-details-marker { display: none; }
+.more-info summary::after { content: " +"; }
+.more-info[open] summary::after { content: " −"; }
+.more-info .sparkles { margin-top: 10px; font-size: 0.9rem; color: var(--ink); }
+.more-info .req { margin: 10px 0 0; color: var(--gold-text); font-size: 0.9rem; }
