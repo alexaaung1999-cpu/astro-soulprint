@@ -112,12 +112,54 @@
     return out.join('');
   }
 
+
+  /* ---------- Flower decoration (kept pale and behind everything) ---------- */
+  var PETAL = { fill: '#f7ead0', stroke: '#c9a24b' }, PETAL_G = { fill: '#dcefe4', stroke: '#2f8f72' };
+
+  function flower(cx, cy, r, rot, tone) {
+    var o = '<g transform="translate(' + cx + ',' + cy + ') rotate(' + rot + ')">';
+    for (var i = 0; i < 5; i++) {
+      o += '<ellipse cx="0" cy="' + (-r * 0.58) + '" rx="' + (r * 0.36) + '" ry="' + (r * 0.58) + '" transform="rotate(' + (i * 72) + ')" fill="' + tone.fill + '" stroke="' + tone.stroke + '" stroke-width="0.9"/>';
+    }
+    return o + '<circle r="' + (r * 0.24) + '" fill="#e5c673" stroke="#c9a24b" stroke-width="0.8"/></g>';
+  }
+  function leaf(x, y, rot, size) {
+    return '<ellipse cx="' + x + '" cy="' + y + '" rx="' + (size * 0.42) + '" ry="' + size + '" transform="rotate(' + rot + ' ' + x + ' ' + y + ')" fill="#cfe8da" stroke="#2f8f72" stroke-width="0.8"/>';
+  }
+  function lotus(cx, baseY) {
+    var petal = 'M0,0 C-10,-14 -10,-32 0,-46 C10,-32 10,-14 0,0Z';
+    var o = '<g transform="translate(' + cx + ',' + baseY + ')">';
+    [[-62, 0.78], [62, 0.78], [-34, 0.92], [34, 0.92], [0, 1]].forEach(function (a) {
+      o += '<path d="' + petal + '" transform="rotate(' + a[0] + ') scale(' + a[1] + ')" fill="#f7ead0" stroke="#c9a24b" stroke-width="1"/>';
+    });
+    return o + '<path d="' + petal + '" transform="scale(0.55)" fill="#ecd9a0" stroke="#c9a24b" stroke-width="0.9"/></g>';
+  }
+  function cornerTop() {
+    return '<path d="M95,56 C58,92 72,134 42,192 S30,262 40,310" fill="none" stroke="#2f8f72" stroke-opacity="0.55" stroke-width="1.3" stroke-linecap="round"/>' +
+      leaf(70, 100, 35, 9) + leaf(58, 150, -40, 9) + leaf(47, 202, 30, 8) + leaf(38, 256, -30, 8) +
+      leaf(76, 56, -55, 9) + leaf(116, 66, 50, 9) +
+      flower(95, 40, 15, 8, PETAL) + flower(66, 82, 8, 30, PETAL_G) + flower(40, 214, 7, 0, PETAL) + flower(40, 312, 8, 20, PETAL_G);
+  }
+  function cornerBottom() {
+    return '<path d="M46,640 C40,615 62,600 92,596" fill="none" stroke="#2f8f72" stroke-opacity="0.55" stroke-width="1.3" stroke-linecap="round"/>' +
+      leaf(54, 622, 25, 8) + leaf(78, 600, -60, 8) + leaf(60, 585, 30, 8) +
+      flower(96, 592, 11, 0, PETAL) + flower(52, 598, 7, 40, PETAL_G);
+  }
+  function floral() {
+    var side = cornerTop() + cornerBottom();
+    return '<g class="bg-flowers" opacity="0.9">' + side +
+      '<g transform="translate(446,0) scale(-1,1)">' + side + '</g>' +
+      '<text x="142" y="26" class="bg-spark">✦</text><text x="304" y="26" class="bg-spark">✦</text>' +
+      '<text x="118" y="344" class="bg-spark sm">✦</text><text x="328" y="590" class="bg-spark sm">✦</text></g>' +
+      lotus(223, 700);
+  }
+
   function render(chart) {
     var out = [];
     var pg = chart.personalityGates, dg = chart.designGates;
     function state(g) { return pg[g] && dg[g] ? 'both' : pg[g] ? 'personality' : dg[g] ? 'design' : 'none'; }
 
-    out.push('<svg class="bodygraph" viewBox="0 0 ' + VIEW_W + ' 660" role="img" aria-labelledby="bgTitle bgDesc" xmlns="http://www.w3.org/2000/svg">');
+    out.push('<svg class="bodygraph" viewBox="0 0 ' + VIEW_W + ' 706" role="img" aria-labelledby="bgTitle bgDesc" xmlns="http://www.w3.org/2000/svg">');
     out.push('<title id="bgTitle">Your Soulprint Chart bodygraph</title>');
     out.push('<desc id="bgDesc">Defined centers: ' + (chart.definedCenterList.map(function (c) { return data.CENTER_NAMES[c]; }).join(', ') || 'none') + '. Defined channels: ' + (chart.channels.map(function (c) { return c.key; }).join(', ') || 'none') + '.</desc>');
     out.push('<defs>' +
@@ -131,6 +173,7 @@
 
     out.push('<g transform="translate(' + BODY_X + ',0)">');
     out.push('<ellipse cx="223" cy="335" rx="190" ry="335" fill="url(#halo)"/>');
+    out.push(floral());
 
     // 1. soft tracks for every channel
     data.CHANNELS.forEach(function (ch) {
