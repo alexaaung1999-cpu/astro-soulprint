@@ -1,39 +1,9 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Soulprint Core — Astro Soulprint by Alex</title>
-  <meta name="description" content="Soulprint Core readings by Astro Soulprint by Alex. Western Astrology and Human Design.">
-  <meta name="theme-color" content="#faf7f0">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Soulprint Core — Astro Soulprint by Alex">
-  <meta property="og:description" content="Soulprint Core readings by Astro Soulprint by Alex. Western Astrology and Human Design.">
-  <link rel="icon" type="image/png" href="images/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&family=Noto+Sans+Myanmar:wght@400;500;600&family=Noto+Serif+Myanmar:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header class="site-header">
-    <div class="wrap bar">
-      <a class="brand-link" href="index.html"><img src="images/logo.jpg" alt="" width="38" height="38">Astro Soulprint</a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
-      <nav class="site-nav" id="site-nav" aria-label="Main menu">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li class="has-sub"><a href="index.html#packages">Packages</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Show package categories"></button>
-            <ul class="sub"><li><a href="aligned-love.html">Aligned Love</a></li><li><a href="aligned-wealth-career.html">Aligned Wealth &amp; Career</a></li><li><a href="karmic-healing.html">Karmic Healing &amp; Aura Protection</a></li><li><a href="cosmic-timing.html">Cosmic Timing</a></li><li><a href="soulprint-core.html" aria-current="page">Soulprint Core</a></li></ul>
-          </li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main>
+---
+layout: default
+title: "Soulprint Core — Astro Soulprint by Alex"
+description: "Soulprint Core readings by Astro Soulprint by Alex. Western Astrology and Human Design."
+active: core
+---
     <section class="page-hero">
       <div class="wrap">
         <p class="crumbs"><a href="index.html">Home</a> &rsaquo; <a href="index.html#packages">Packages</a></p>
@@ -88,56 +58,3 @@
         <div class="actions" style="flex-wrap:wrap"><a class="btn btn-ghost btn-sm" href="aligned-love.html">Aligned Love</a><a class="btn btn-ghost btn-sm" href="aligned-wealth-career.html">Aligned Wealth &amp; Career</a><a class="btn btn-ghost btn-sm" href="karmic-healing.html">Karmic Healing &amp; Aura Protection</a><a class="btn btn-ghost btn-sm" href="cosmic-timing.html">Cosmic Timing</a></div>
       </div>
     </section>
-  </main>
-
-  <footer class="footer">
-    <div class="wrap">
-      <p class="brand">Astro Soulprint <span>by Alex</span></p>
-      <p>Not a prediction. A map back to who you are.</p>
-      <div class="actions">
-        <a class="btn" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Message on Messenger</a>
-        <a class="btn btn-ghost" href="https://www.facebook.com/profile.php?id=61561494154512" target="_blank" rel="noopener">Facebook Page</a>
-      </div>
-      <nav class="footer-links" aria-label="Footer">
-        <a href="index.html">Home</a>
-        <a href="aligned-love.html">Aligned Love</a>
-        <a href="aligned-wealth-career.html">Aligned Wealth &amp; Career</a>
-        <a href="karmic-healing.html">Karmic Healing &amp; Aura Protection</a>
-        <a href="cosmic-timing.html">Cosmic Timing</a>
-        <a href="soulprint-core.html">Soulprint Core</a>
-        <a href="roadmap.html">2027 Cosmic Roadmap</a>
-      </nav>
-      <p class="small">&copy; <span id="year">2026</span> Astro Soulprint by Alex</p>
-    </div>
-  </footer>
-
-  <a class="float-cta" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener" aria-label="Book a reading on Messenger">Book a Reading</a>
-
-  <script>
-    document.documentElement.classList.add('js');
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Mobile menu
-    var nav = document.getElementById('site-nav');
-    var toggle = document.querySelector('.nav-toggle');
-    toggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
-      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    });
-    var sub = document.querySelector('.sub-toggle');
-    sub.addEventListener('click', function () {
-      var open = sub.parentNode.classList.toggle('open');
-      sub.setAttribute('aria-expanded', open);
-    });
-    nav.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') { nav.classList.remove('open'); toggle.setAttribute('aria-expanded', false); }
-    });
-
-    // After the Energetic Exchange deadline (end of Oct 31, 2026, Myanmar time), show the regular price.
-    if (Date.now() > Date.parse('2026-10-31T23:59:59+06:30')) {
-      document.documentElement.classList.add('offer-ended');
-    }
-  </script>
-</body>
-</html>

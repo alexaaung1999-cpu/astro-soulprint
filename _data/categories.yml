@@ -1,0 +1,16 @@
+# The five reading categories. Used by the menu, footer and home page order.
+- id: love
+  url: aligned-love.html
+  title: "Aligned Love"
+- id: wealth
+  url: aligned-wealth-career.html
+  title: "Aligned Wealth &amp; Career"
+- id: karmic
+  url: karmic-healing.html
+  title: "Karmic Healing &amp; Aura Protection"
+- id: timing
+  url: cosmic-timing.html
+  title: "Cosmic Timing"
+- id: core
+  url: soulprint-core.html
+  title: "Soulprint Core"
