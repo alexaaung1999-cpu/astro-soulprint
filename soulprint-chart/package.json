@@ -1,0 +1,16 @@
+{
+  "name": "soulprint-chart",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Free Soulprint Chart calculator for Astro Soulprint by Alex. Runs fully in the browser.",
+  "scripts": {
+    "test": "node --test \"tests/*.test.js\"",
+    "build:data": "node tools/build-data.js"
+  },
+  "devDependencies": {
+    "all-the-cities": "3.1.0",
+    "astronomy-engine": "2.1.19",
+    "countries-and-timezones": "^3.11.0",
+    "tz-lookup": "6.1.25"
+  }
+}
