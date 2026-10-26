@@ -5,226 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Astro Soulprint by Alex</title>
   <meta name="description" content="Western Astrology and Human Design readings for love, career, healing and timing. Not a prediction. A map back to who you are.">
-  <meta name="theme-color" content="#faf6ee">
-
-  <!-- Facebook / Messenger link preview. For a preview image, add an absolute og:image URL once the site is live. -->
+  <meta name="theme-color" content="#faf7f0">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Astro Soulprint by Alex">
-  <meta property="og:description" content="Not a prediction. A map back to who you are. Astrology + Human Design readings.">
-
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23402615'/%3E%3Cpath d='M32 12l4.5 15.5L52 32l-15.5 4.5L32 52l-4.5-15.5L12 32l15.5-4.5z' fill='%23d6c8b1'/%3E%3C/svg%3E">
-
+  <meta property="og:description" content="Western Astrology and Human Design readings for love, career, healing and timing. Not a prediction. A map back to who you are.">
+  <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500;600&family=Noto+Sans+Myanmar:wght@400;500;600&family=Noto+Serif+Myanmar:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&family=Noto+Sans+Myanmar:wght@400;500;600&family=Noto+Serif+Myanmar:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- 1. HERO -->
-  <header class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Astrology &middot; Human Design</p>
-      <h1>Astro Soulprint <span>by Alex</span></h1>
-      <p class="tagline">Not a prediction. A map back to who you are.</p>
-      <p class="tagline-my" lang="my">ဟောကိန်းမဟုတ်ပါ။ ကိုယ့်ကိုယ်ကိုယ် ပြန်ရှာတွေ့ဖို့ လမ်းပြမြေပုံပါ။</p>
-      <div class="hero-actions">
-        <a class="btn" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Book a Reading</a>
-        <a class="btn btn-ghost" href="#readings">See the readings</a>
-      </div>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand-link" href="index.html"><img src="images/logo.jpg" alt="" width="38" height="38">Astro Soulprint</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <nav class="site-nav" id="site-nav" aria-label="Main menu">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li class="has-sub"><a href="index.html#packages">Packages</a><button class="sub-toggle" type="button" aria-expanded="false" aria-label="Show package categories"></button>
+            <ul class="sub"><li><a href="aligned-love.html">Aligned Love</a></li><li><a href="aligned-wealth-career.html">Aligned Wealth &amp; Career</a></li><li><a href="karmic-healing.html">Karmic Healing &amp; Aura Protection</a></li><li><a href="cosmic-timing.html">Cosmic Timing</a></li><li><a href="soulprint-core.html">Soulprint Core</a></li></ul>
+          </li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
   <main>
+    <section class="hero">
+      <div class="wrap">
+        <img class="hero-logo" src="images/logo.jpg" alt="Astro Soulprint logo" width="140" height="140">
+        <p class="label">Astrology &middot; Human Design</p>
+        <h1>Astro Soulprint <span>by Alex</span></h1>
+        <p class="tagline">Not a prediction. A map back to who you are.</p>
+        <p class="tagline-my" lang="my">ဟောကိန်းမဟုတ်ပါ။ ကိုယ့်ကိုယ်ကိုယ် ပြန်ရှာတွေ့ဖို့ လမ်းပြမြေပုံပါ။</p>
+        <div class="actions">
+          <a class="btn" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Book a Reading</a>
+          <a class="btn btn-ghost" href="#packages">See the packages</a>
+        </div>
+      </div>
+    </section>
 
-    <!-- 2. ABOUT -->
-    <section class="section about" id="about">
+    <section class="section" id="about">
       <div class="wrap narrow">
-        <h2>About Alex</h2>
-        <p class="lead">Hi, I’m Alex — the reader behind Astro Soulprint. I blend Western Astrology and Human Design to help you see the patterns shaping your love life, career, and life timing, and how to work with them instead of against them.</p>
-        <p>Every reading is personal, practical, and made to leave you feeling clearer, calmer, and more aligned with the life you’re meant to live.</p>
-        <p class="my" lang="my">မင်္ဂလာပါ၊ ကျွန်မ Alex ပါ — Astro Soulprint ရဲ့ Reader ပါ။ Western Astrology နဲ့ Human Design ကို ပေါင်းစပ်ပြီး ချစ်ရေး၊ အလုပ်အကိုင်နဲ့ ဘဝအချိန်ကာလတွေကို ပုံဖော်နေတဲ့ Patterns တွေကို မြင်လာအောင် ကူညီပေးပါတယ်။ အဲဒီ Patterns တွေကို ဆန့်ကျင်မနေဘဲ အတူလိုက်ပြီး ဘယ်လိုလုပ်ရမလဲဆိုတာကိုလည်း ရှင်းပြပေးပါတယ်။ Reading တိုင်းဟာ ကိုယ်ပိုင်ဆန်ပြီး လက်တွေ့ကျကာ ပိုရှင်းလင်း၊ ပိုတည်ငြိမ်၊ ကိုယ်နေထိုင်သင့်တဲ့ ဘဝနဲ့ ပိုကိုက်ညီလာအောင် ရည်ရွယ်ပါတယ်။</p>
-      </div>
-    </section>
-
-    <!-- 3. READING MENU -->
-    <section class="section menu" id="readings">
-      <div class="wrap">
-        <h2 class="center">Reading Menu</h2>
-        <p class="center sub" lang="my">ကိုယ့်လိုအပ်ချက်အလိုက် ရွေးချယ်နိုင်အောင် Category လေးတွေနဲ့ ခွဲထားပါတယ် 🤎</p>
-
-        <nav class="chips" aria-label="Reading categories">
-          <a href="#love">Aligned Love</a>
-          <a href="#wealth">Wealth &amp; Career</a>
-          <a href="#karmic">Karmic Healing</a>
-          <a href="#timing">Cosmic Timing</a>
-          <a href="#core">Soulprint Core</a>
-        </nav>
-
-        <!-- Prices: MMK for every reading, THB where one was provided.
-             To add a THB price, put <span class="alt">· 1,234 THB</span> after the MMK span. -->
-
-        <div class="category" id="love">
-          <h3>Aligned Love</h3>
-          <p class="cat-note" lang="my">ချစ်ခြင်းမေတ္တာနဲ့ Relationship ပုံစံတွေကို နားလည်ဖို့</p>
-          <div class="cards">
-            <article class="card">
-              <span class="tag">Mini Reading</span>
-              <h4>Aligned Love — Mini</h4>
-              <p lang="my">Venus, Moon, Juno, 5th &amp; 7th House နဲ့ HD Love Placement ကို ကြည့်ပြီး ကိုယ်ဘယ်လိုချစ်တတ်လဲ၊ ဘာကို တကယ်လိုအပ်လဲဆိုတာ ရှင်းပြပေးပါတယ်။</p>
-              <p class="price"><span class="mmk">66,666 MMK</span> <span class="alt">· 444 THB · 28 SGD</span></p>
-            </article>
-            <article class="card">
-              <span class="tag">Human Design only</span>
-              <h4>HD Love</h4>
-              <p lang="my">Human Design တစ်ခုတည်းနဲ့ ကြည့်တဲ့ Mini Reading — ချစ်ခြင်းမေတ္တာအပိုင်းကို Human Design အမြင်ကနေ ရှင်းပြပေးပါတယ်။</p>
-              <p class="price"><span class="mmk">66,666 MMK</span> <span class="alt">· 444 THB · 28 SGD</span></p>
-            </article>
-            <article class="card">
-              <span class="tag">Two charts</span>
-              <h4>Synastry Chart Package</h4>
-              <p lang="my">ကိုယ်နဲ့ Partner ကြားက Connection, Compatibility, Attraction, Emotional Bond နဲ့ Long-term Potential တွေကို ပိုပြီး Deeply နားလည်ချင်သူတွေအတွက်။</p>
-              <p class="price"><span class="mmk">99,999 MMK</span> <span class="alt">· 800 THB · 55 SGD</span></p>
-            </article>
-          </div>
-        </div>
-
-        <div class="category" id="wealth">
-          <h3>Aligned Wealth &amp; Career</h3>
-          <p class="cat-note" lang="my">ငွေကြေး၊ အလုပ်အကိုင်နဲ့ ကိုယ့်သဘာဝကို ကိုက်ညီအောင်</p>
-          <div class="cards">
-            <article class="card">
-              <span class="tag">Mini Reading</span>
-              <h4>Aligned Wealth &amp; Career — Mini</h4>
-              <p lang="my">Jupiter, 2nd &amp; 8th House, Midheaven နဲ့ Energy Type &amp; Profile Lines ကို ကြည့်ပြီး ကိုယ့်အတွက် သဘာဝကျတဲ့ လမ်းကြောင်းကို ရှင်းပြပေးပါတယ်။</p>
-              <p class="price"><span class="mmk">66,666 MMK</span> <span class="alt">· 444 THB · 28 SGD</span></p>
-            </article>
-            <article class="card">
-              <span class="tag">Human Design only</span>
-              <h4>HD Wealth &amp; Career</h4>
-              <p lang="my">Human Design တစ်ခုတည်းနဲ့ ကြည့်တဲ့ Mini Reading — ငွေကြေးနဲ့ အလုပ်အကိုင်အပိုင်းကို Human Design အမြင်ကနေ ရှင်းပြပေးပါတယ်။</p>
-              <p class="price"><span class="mmk">66,666 MMK</span> <span class="alt">· 444 THB · 28 SGD</span></p>
-            </article>
-          </div>
-        </div>
-
-        <div class="category" id="karmic">
-          <h3>Karmic Healing &amp; Aura Protection</h3>
-          <p class="cat-note" lang="my">ထပ်ခါထပ်ခါ ပေါ်လာတဲ့ Patterns တွေကို နားလည်ပြီး ကိုယ့် Energy ကို ကာကွယ်ဖို့</p>
-          <div class="cards">
-            <article class="card">
-              <span class="tag">Mini Reading</span>
-              <h4>Karmic Healing &amp; Aura Protection — Mini</h4>
-              <p lang="my">Saturn, Pluto, 12th House နဲ့ Incarnation Cross, Open/Undefined Centers ကို ကြည့်ပြီး ပြန်လည်ကုစားရမယ့် အပိုင်းတွေကို ဖတ်ပေးပါတယ်။</p>
-              <p class="price"><span class="mmk">66,666 MMK</span> <span class="alt">· 444 THB · 28 SGD</span></p>
-            </article>
-            <article class="card">
-              <span class="tag">Human Design only</span>
-              <h4>HD Healing</h4>
-              <p lang="my">Human Design တစ်ခုတည်းနဲ့ ကြည့်တဲ့ Mini Reading — ပြန်လည်ကုစားရမယ့် အပိုင်းတွေကို Human Design အမြင်ကနေ ရှင်းပြပေးပါတယ်။</p>
-              <p class="price"><span class="mmk">66,666 MMK</span> <span class="alt">· 444 THB · 28 SGD</span></p>
-            </article>
-          </div>
-        </div>
-
-        <div class="category" id="timing">
-          <h3>Cosmic Timing</h3>
-          <p class="cat-note" lang="my">ဘယ်အချိန်မှာ ရှေ့ဆက်ပြီး၊ ဘယ်အချိန်မှာ ခဏရပ်သင့်လဲ</p>
-          <div class="cards">
-            <article class="card">
-              <span class="tag">Transit</span>
-              <h4>Transit — 3 Months</h4>
-              <p lang="my">လာမယ့် ၃ လအတွင်း Major Transits တွေက ကိုယ့် Birth Chart ကို ဘယ်လိုထိတွေ့မလဲဆိုတာ ကြည့်ပေးပါတယ်။</p>
-              <p class="price"><span class="mmk">55,555 MMK</span> <span class="alt">· 444 THB · 30 SGD</span></p>
-            </article>
-            <article class="card">
-              <span class="tag">Transit</span>
-              <h4>Transit — 6 Months</h4>
-              <p lang="my">၆ လစာ Transit Reading — ပိုရှည်ရှည်ကြည့်ပြီး စီစဉ်ချင်သူတွေအတွက်ပါ။</p>
-              <p class="price"><span class="mmk">88,888 MMK</span> <span class="alt">· 666 THB · 66 SGD</span></p>
-            </article>
-            <article class="card">
-              <span class="tag">Inner growth</span>
-              <h4>Progressed Chart</h4>
-              <p lang="my">ကိုယ့်ရဲ့ အတွင်းပိုင်း ကြီးထွားမှုနဲ့ Life Chapter အသစ်တွေကို Progressed Chart နဲ့ ဖတ်ပေးပါတယ်။</p>
-              <p class="price"><span class="mmk">166,666 MMK</span> <span class="alt">· 1,222 THB · 55 SGD</span></p>
-            </article>
-          </div>
-        </div>
-
-        <div class="category" id="core">
-          <h3>Soulprint Core</h3>
-          <p class="cat-note" lang="my">ကိုယ့်ရဲ့ အခြေခံ Blueprint — Birth Chart နဲ့ Human Design</p>
-          <div class="cards">
-            <article class="card">
-              <span class="tag">Human Design</span>
-              <h4>HD 4 Arrows</h4>
-              <p lang="my">Human Design ရဲ့ 4 Arrows (Variables) ကို အသေးစိတ်ဖတ်ပြီး ကိုယ့်အတွက် သဘာဝကျတဲ့ နေထိုင်ပုံနဲ့ ဆုံးဖြတ်ပုံကို ရှင်းပြပေးပါတယ်။</p>
-              <p class="price"><span class="mmk">99,999 MMK</span> <span class="alt">· 800 THB · 55 SGD</span></p>
-            </article>
-            <article class="card">
-              <span class="tag">Western Astrology</span>
-              <h4>Birth Chart — Full Chart</h4>
-              <p lang="my">Birth Chart တစ်ခုလုံးကို Planets, Houses, Aspects အလိုက် အပြည့်အစုံ ဖတ်ပေးပါတယ်။</p>
-              <p class="price"><span class="mmk">166,666 MMK</span> <span class="alt">· 1,222 THB · 55 SGD</span></p>
-            </article>
-            <article class="card">
-              <span class="tag">Human Design</span>
-              <h4>Human Design — Full Chart</h4>
-              <p lang="my">Type, Strategy, Authority, Profile, Centers နဲ့ Incarnation Cross အပါအဝင် Human Design Chart တစ်ခုလုံးကို ရှင်းပြပေးပါတယ်။</p>
-              <p class="price"><span class="mmk">166,666 MMK</span> <span class="alt">· 1,222 THB · 55 SGD</span></p>
-            </article>
-          </div>
+        <div class="about-card">
+          <p class="label">About Alex</p>
+          <h2>Hi, I’m Alex</h2>
+          <p class="lead">Hi, I’m Alex — the reader behind Astro Soulprint. I blend Western Astrology and Human Design to help you see the patterns shaping your love life, career, and life timing, and how to work with them instead of against them.</p>
+          <p>Every reading is personal, practical, and made to leave you feeling clearer, calmer, and more aligned with the life you’re meant to live.</p>
+          <p class="my" lang="my">မင်္ဂလာပါ၊ ကျွန်မ Alex ပါ — Astro Soulprint ရဲ့ Reader ပါ။ Western Astrology နဲ့ Human Design ကို ပေါင်းစပ်ပြီး ချစ်ရေး၊ အလုပ်အကိုင်နဲ့ ဘဝအချိန်ကာလတွေကို ပုံဖော်နေတဲ့ Patterns တွေကို မြင်လာအောင် ကူညီပေးပါတယ်။ အဲဒီ Patterns တွေကို ဆန့်ကျင်မနေဘဲ အတူလိုက်ပြီး ဘယ်လိုလုပ်ရမလဲဆိုတာကိုလည်း ရှင်းပြပေးပါတယ်။ Reading တိုင်းဟာ ကိုယ်ပိုင်ဆန်ပြီး လက်တွေ့ကျကာ ပိုရှင်းလင်း၊ ပိုတည်ငြိမ်၊ ကိုယ်နေထိုင်သင့်တဲ့ ဘဝနဲ့ ပိုကိုက်ညီလာအောင် ရည်ရွယ်ပါတယ်။</p>
         </div>
       </div>
     </section>
 
-    <!-- 4. FLAGSHIP BUNDLE -->
-    <section class="section" id="bundle">
-      <div class="wrap">
-        <div class="bundle">
-          <p class="eyebrow light">Flagship offer</p>
-          <h2>Ultimate Soulprint Bundle</h2>
-          <p class="bundle-lead" lang="my">ကိုယ့်ရဲ့ Blueprint တစ်ခုလုံးကို တစ်ပြိုင်နက် နားလည်ချင်သူတွေအတွက် ပြင်ဆင်ထားတဲ့ Offer ပါ။</p>
-          <ul class="ticks">
-            <li>Astro Full Chart</li>
-            <li>Human Design Full Chart</li>
-            <li>HD 4 Arrows</li>
-          </ul>
-          <p class="bundle-price">
-            <s>433,331 MMK · 2,666 THB · 111 SGD</s>
-            <strong>333,333 MMK</strong>
-            <span class="bundle-alt">2,000 THB · 88 SGD</span>
-          </p>
-          <p class="bundle-save" lang="my">99,998 MMK သက်သာပါတယ်</p>
-          <a class="btn btn-light" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Book the Bundle</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. SEASONAL: 2027 COSMIC ROADMAP -->
-    <section class="section" id="roadmap">
-      <div class="wrap">
-        <div class="seasonal">
-          <p class="eyebrow">Seasonal reading &middot; Slots now open</p>
+    <section class="section" id="roadmap" style="padding-top:0">
+      <div class="wrap narrow">
+        <div class="featured">
+          <p class="label">Seasonal reading &middot; Slots now open</p>
           <h2>2027 Cosmic Roadmap</h2>
           <p class="season-range">November 2026 – April 2027 &nbsp;·&nbsp; 6 months of Major Transits</p>
-
-          <p lang="my">လာမယ့် 2027 မှာ ဘာကို အဓိက Focus လုပ်ရမလဲ? Career, Money နဲ့ Relationship မှာ ဘယ်လိုအကြောင်းအရာတွေကို ပြန်လည်သုံးသပ်ဖို့ လိုမလဲ? ဘယ်အချိန်မှာ ရှေ့ဆက်ပြီး Action ယူသင့်လဲ၊ ဘယ်အချိန်မှာ ခဏရပ်ပြီး ပြန်ပြင်ဆင်သင့်လဲဆိုတာ နားလည်ချင်သူတွေအတွက် ဒီ Reading လေးကို ပြင်ဆင်ထားပါတယ်။ 🤎</p>
-          <p lang="my">November 2026 ကနေ April 2027 အထိ ၆ လစာ Major Transits တွေကို ကိုယ့်ရဲ့ Birth Chart နဲ့ ချိတ်ဆက်ပြီး ကိုယ့်အတွက် အရေးကြီးလာမယ့် Life Themes၊ ပြန်လည်သုံးသပ်ရမယ့် Patterns နဲ့ အာရုံစိုက်ပြင်ဆင်ထားသင့်တဲ့ အပိုင်းတွေကို ဖတ်ပေးသွားမှာပါ။ ✨</p>
-          <p lang="my">Retrograde နဲ့ Eclipse တိုင်းက လူတိုင်းအတွက် အဓိပ္ပာယ်တူတာ မဟုတ်ပါဘူး။ ကိုယ့် Chart ရဲ့ ဘယ် House ထဲမှာ ဖြစ်နေလဲ၊ ဘယ် Natal Planet နဲ့ ချိတ်ဆက်နေလဲဆိုတာကို ကြည့်ပြီး ကိုယ့်အတွက် ဘာကိုဆိုလိုနိုင်လဲ နားလည်အောင် ရှင်းပြပေးသွားမှာပါ။</p>
-
-          <h3 class="inside">What’s inside</h3>
-          <ul class="inside-list">
-            <li lang="my"><strong>Personal Life Themes</strong> လာမယ့် ၆ လအတွင်း ကိုယ့် Chart ရဲ့ ဘယ် House တွေ Activate ဖြစ်ပြီး Career, Money, Relationship, Home နဲ့ Personal Growth ထဲက ဘယ်အပိုင်းတွေက အဓိက Theme ဖြစ်လာနိုင်လဲ။</li>
-            <li lang="my"><strong>Transit &amp; Natal Planet Connections</strong> Transit Planets တွေက ကိုယ့် Natal Planets တွေနဲ့ ဘယ်လို Aspect ဖြစ်နေပြီး ဘယ်နေရာမှာ အခွင့်အလမ်းတွေကို သတိထားကြည့်သင့်လဲ၊ ဘယ်နေရာမှာ စိတ်ရှည်ရှည်နဲ့ ကိုင်တွယ်ဖို့ လိုနိုင်လဲ။</li>
-            <li lang="my"><strong>Retrograde Lessons &amp; Repeated Patterns</strong> ပြန်ပေါ်လာတဲ့ အခြေအနေတွေ၊ ဆုံးဖြတ်ချက်ဟောင်းတွေနဲ့ Patterns တွေထဲက ဘာကို ပြန်လည်သုံးသပ်ပြီး ပြင်ဆင်ဖို့ လိုနေလဲ။</li>
-            <li lang="my"><strong>Eclipse Themes &amp; Areas of Change</strong> Eclipse တွေက ကိုယ့် Chart ရဲ့ ဘယ် Life Area နဲ့ ချိတ်ဆက်နေပြီး ဘယ်အပိုင်းမှာ အပြောင်းအလဲအတွက် နေရာပေးဖို့ လိုနိုင်လဲ။</li>
-            <li lang="my"><strong>Action, Pause &amp; Preparation</strong> ဘယ်ကာလမှာ ရှေ့ဆက်လုပ်ဆောင်ဖို့ အားပေးနေပြီး ဘယ်ကာလမှာ Slow Down လုပ်ကာ Review, Rework နဲ့ Preparation ကို ဦးစားပေးသင့်လဲ။</li>
-            <li lang="my"><strong>Your 2027 Focus &amp; Direction</strong> ကိုယ့်ရဲ့ Goals တွေကို စီစဉ်တဲ့အခါ ဘာကို ဦးစားပေးသင့်လဲ၊ ဘာကို Mindful ဖြစ်ဖို့ လိုလဲဆိုတဲ့ လမ်းညွှန်ချက်တွေ ပါဝင်ပါတယ်။</li>
-          </ul>
-
+          <p class="lead-my" lang="my">လာမယ့် 2027 မှာ ဘာကို အဓိက Focus လုပ်ရမလဲ? Career, Money နဲ့ Relationship မှာ ဘယ်လိုအကြောင်းအရာတွေကို ပြန်လည်သုံးသပ်ဖို့ လိုမလဲ? ဘယ်အချိန်မှာ ရှေ့ဆက်ပြီး Action ယူသင့်လဲ၊ ဘယ်အချိန်မှာ ခဏရပ်ပြီး ပြန်ပြင်ဆင်သင့်လဲဆိုတာ နားလည်ချင်သူတွေအတွက် ဒီ Reading လေးကို ပြင်ဆင်ထားပါတယ်။ 🤎</p>
           <div class="offer-box">
+
             <p class="offer-label early">🌙 Energetic Exchange &mdash; book by October 31, 2026</p>
             <p class="offer-price early">
               <strong>166,666 MMK</strong>
@@ -239,75 +83,129 @@
               <span>1,888 THB</span>
               <span>122 SGD</span>
             </p>
-
-            <ul class="ticks dark">
-              <li lang="my">Recorded Reading + Personalized Transit Analysis</li>
-              <li lang="my">ကိုယ့်အတွက် အရေးကြီးတဲ့ Dates နဲ့ Focus Points တွေကို ပြန်ကြည့်လို့ရမယ့် Personal Transit Calendar PDF</li>
-              <li lang="my">Transit Detail Reading လေးဖြစ်လို့ 5–7 days အတွင်း လက်ခံရရှိပါမယ်</li>
-            </ul>
           </div>
-
-          <p class="quote">Understand your timing. Plan your next chapter with intention. ✨</p>
-          <p class="sign">— A, Astro Soulprint</p>
-          <a class="btn" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Reserve my 2027 slot</a>
+          <ul class="sparkles"><li lang="my">Recorded Reading + Personalized Transit Analysis</li><li lang="my">ကိုယ့်အတွက် အရေးကြီးတဲ့ Dates နဲ့ Focus Points တွေကို ပြန်ကြည့်လို့ရမယ့် Personal Transit Calendar PDF</li><li lang="my">Transit Detail Reading လေးဖြစ်လို့ 5–7 days အတွင်း လက်ခံရရှိပါမယ်</li></ul>
+          <div class="actions">
+            <a class="btn" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Reserve my 2027 slot</a>
+            <a class="btn btn-ghost" href="roadmap.html">See what’s inside</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 6. TESTIMONIALS -->
-    <section class="section" id="love-notes">
+    <section class="section tint" id="favourites">
       <div class="wrap">
-        <h2 class="center">Kind Words</h2>
-        <p class="center sub" lang="my">Reading ယူပြီးသူတွေရဲ့ စကားလေးတွေပါ 🤎</p>
-        <!-- Add screenshots to images/testimonials/ as testimonial-1.png … testimonial-6.jpg.
-             Until a file exists, the soft placeholder shows. To use .png or more slots, edit the src and copy a <figure>. -->
-        <div class="grid">
-          <figure class="shot"><img src="images/testimonials/testimonial-1.png" alt="Client testimonial screenshot 1" loading="lazy" onerror="this.remove()"><figcaption>Testimonial 1</figcaption></figure>
+        <p class="label center">Most loved</p>
+        <h2 class="center">Clients’ Favourite Packages</h2>
+        <p class="sub center">Where most clients begin.</p>
+        <div class="cards three">
+        <article class="card">
+          <span class="pill gold">Wealth &amp; Career</span>
+          <h4>Aligned Wealth</h4>
+          <p class="desc">Find the work and money path that fits your nature. Mini reading.</p>
+          <ul class="sparkles"><li>Jupiter, 2nd &amp; 8th House</li><li>Midheaven</li><li>Energy Type &amp; Profile Lines</li></ul>
+          <p class="price"><span class="mmk">66,666 MMK</span> <span class="alt">444 THB · 28 SGD</span></p>
+          <a class="btn btn-block" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Book this reading</a>
+        </article>
+        <article class="card">
+          <span class="pill gold">Karmic Healing</span>
+          <h4>Karmic Healing</h4>
+          <p class="desc">Understand the patterns that keep returning, and how to protect your energy. Mini reading.</p>
+          <ul class="sparkles"><li>Saturn, Pluto &amp; 12th House</li><li>Incarnation Cross</li><li>Open / Undefined Centers</li></ul>
+          <p class="price"><span class="mmk">66,666 MMK</span> <span class="alt">444 THB · 28 SGD</span></p>
+          <a class="btn btn-block" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Book this reading</a>
+        </article>
+        <article class="card pending">
+          <span class="pill gold">Birth Chart + Human Design</span>
+          <h4>Full Chart Activation</h4>
+          <p class="desc">Your Western Birth Chart and your Human Design chart, read together.</p>
+          <ul class="sparkles"><li>Birth Chart — Full Chart</li><li>Human Design — Full Chart</li></ul>
+          <p class="price"><span class="mmk">Price to be confirmed</span></p>
+          <a class="btn btn-block" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Book this reading</a>
+        </article>
         </div>
       </div>
     </section>
 
-    <!-- 7. HOW IT WORKS -->
-    <section class="section how" id="how">
-      <div class="wrap narrow">
-        <h2 class="center">How It Works</h2>
-        <ol class="steps">
-          <li>
-            <span class="num">1</span>
-            <div>
-              <h4>Choose a reading</h4>
-              <p lang="my">ကိုယ့်လိုအပ်ချက်နဲ့ အကိုက်ညီဆုံး Reading ကို ရွေးပါ။</p>
-            </div>
-          </li>
-          <li>
-            <span class="num">2</span>
-            <div>
-              <h4>Send your details</h4>
-              <p lang="my">Messenger ကနေ မွေးသက္ကရာဇ်၊ မွေးချိန် (အတိအကျ) နဲ့ မွေးရပ်ဒေသကို ပို့ပေးပါ။</p>
-            </div>
-          </li>
-          <li>
-            <span class="num">3</span>
-            <div>
-              <h4>Receive your reading</h4>
-              <p lang="my">Alex က ကိုယ့်အတွက် ကိုယ်ပိုင် Reading ကို ပြင်ဆင်ပြီး ပို့ပေးပါမယ်။</p>
-            </div>
-          </li>
-        </ol>
-        <p class="center"><a class="btn" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Start on Messenger</a></p>
+    <section class="section" id="packages">
+      <div class="wrap">
+        <p class="label center">Reading packages</p>
+        <h2 class="center">Choose your reading</h2>
+        <p class="sub center" lang="my">ကိုယ့်လိုအပ်ချက်အလိုက် ရွေးချယ်နိုင်အောင် Category လေးတွေနဲ့ ခွဲထားပါတယ် 🤎</p>
+        <div class="cards three">
+        <a class="card card-link" href="aligned-love.html">
+          <span class="pill">3 readings</span>
+          <h4>Aligned Love</h4>
+          <p class="desc" lang="my">ချစ်ခြင်းမေတ္တာနဲ့ Relationship ပုံစံတွေကို နားလည်ဖို့</p>
+          <span class="more">View readings</span>
+        </a>
+        <a class="card card-link" href="aligned-wealth-career.html">
+          <span class="pill">2 readings</span>
+          <h4>Aligned Wealth &amp; Career</h4>
+          <p class="desc" lang="my">ငွေကြေး၊ အလုပ်အကိုင်နဲ့ ကိုယ့်သဘာဝကို ကိုက်ညီအောင်</p>
+          <span class="more">View readings</span>
+        </a>
+        <a class="card card-link" href="karmic-healing.html">
+          <span class="pill">2 readings</span>
+          <h4>Karmic Healing &amp; Aura Protection</h4>
+          <p class="desc" lang="my">ထပ်ခါထပ်ခါ ပေါ်လာတဲ့ Patterns တွေကို နားလည်ပြီး ကိုယ့် Energy ကို ကာကွယ်ဖို့</p>
+          <span class="more">View readings</span>
+        </a>
+        <a class="card card-link" href="cosmic-timing.html">
+          <span class="pill">3 readings</span>
+          <h4>Cosmic Timing</h4>
+          <p class="desc" lang="my">ဘယ်အချိန်မှာ ရှေ့ဆက်ပြီး၊ ဘယ်အချိန်မှာ ခဏရပ်သင့်လဲ</p>
+          <span class="more">View readings</span>
+        </a>
+        <a class="card card-link" href="soulprint-core.html">
+          <span class="pill">3 readings</span>
+          <h4>Soulprint Core</h4>
+          <p class="desc" lang="my">ကိုယ့်ရဲ့ အခြေခံ Blueprint — Birth Chart နဲ့ Human Design</p>
+          <span class="more">View readings</span>
+        </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tint" id="contact">
+      <div class="wrap narrow center">
+        <p class="label">Thank you</p>
+        <p class="thanks">Thank you for trusting me with your story. 🤎</p>
+        <p class="sub">Every reading is made with care, just for you. Message me anytime and we’ll find the right one together.</p>
+        <div class="actions">
+          <a class="btn" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Message on Messenger</a>
+          <a class="btn btn-ghost" href="https://www.facebook.com/profile.php?id=61561494154512" target="_blank" rel="noopener">Facebook Page</a>
+        </div>
+        <div class="steps">
+          <div class="step"><span class="num">1</span><div><h4>Choose a reading</h4><p lang="my">ကိုယ့်လိုအပ်ချက်နဲ့ အကိုက်ညီဆုံး Reading ကို ရွေးပါ။</p></div></div>
+          <div class="step"><span class="num">2</span><div><h4>Send your details</h4><p lang="my">Messenger ကနေ မွေးသက္ကရာဇ်၊ မွေးချိန် (အတိအကျ) နဲ့ မွေးရပ်ဒေသကို ပို့ပေးပါ။</p></div></div>
+          <div class="step"><span class="num">3</span><div><h4>Receive your reading</h4><p lang="my">Alex က ကိုယ့်အတွက် ကိုယ်ပိုင် Reading ကို ပြင်ဆင်ပြီး ပို့ပေးပါမယ်။</p></div></div>
+        </div>
+        <figure class="shot">
+          <img src="images/testimonials/testimonial-1.png" alt="A kind word from a client" loading="lazy">
+          <figcaption lang="my">Reading ယူပြီးသူတွေရဲ့ စကားလေးတွေပါ 🤎</figcaption>
+        </figure>
       </div>
     </section>
   </main>
 
-  <!-- 8. FOOTER -->
   <footer class="footer">
-    <div class="wrap center">
+    <div class="wrap">
       <p class="brand">Astro Soulprint <span>by Alex</span></p>
-      <p class="tagline-sm">Not a prediction. A map back to who you are.</p>
-      <div class="hero-actions">
-        <a class="btn btn-light" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Message on Messenger</a>
-        <a class="btn btn-outline-light" href="https://www.facebook.com/profile.php?id=61561494154512" target="_blank" rel="noopener">Facebook Page</a>
+      <p>Not a prediction. A map back to who you are.</p>
+      <div class="actions">
+        <a class="btn" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener">Message on Messenger</a>
+        <a class="btn btn-ghost" href="https://www.facebook.com/profile.php?id=61561494154512" target="_blank" rel="noopener">Facebook Page</a>
       </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="aligned-love.html">Aligned Love</a>
+        <a href="aligned-wealth-career.html">Aligned Wealth &amp; Career</a>
+        <a href="karmic-healing.html">Karmic Healing &amp; Aura Protection</a>
+        <a href="cosmic-timing.html">Cosmic Timing</a>
+        <a href="soulprint-core.html">Soulprint Core</a>
+        <a href="roadmap.html">2027 Cosmic Roadmap</a>
+      </nav>
       <p class="small">&copy; <span id="year">2026</span> Astro Soulprint by Alex</p>
     </div>
   </footer>
@@ -315,8 +213,25 @@
   <a class="float-cta" href="https://m.me/astrosoulprintbyalex" target="_blank" rel="noopener" aria-label="Book a reading on Messenger">Book a Reading</a>
 
   <script>
-    // Footer year
+    document.documentElement.classList.add('js');
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu
+    var nav = document.getElementById('site-nav');
+    var toggle = document.querySelector('.nav-toggle');
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    var sub = document.querySelector('.sub-toggle');
+    sub.addEventListener('click', function () {
+      var open = sub.parentNode.classList.toggle('open');
+      sub.setAttribute('aria-expanded', open);
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') { nav.classList.remove('open'); toggle.setAttribute('aria-expanded', false); }
+    });
 
     // After the Energetic Exchange deadline (end of Oct 31, 2026, Myanmar time), show the regular price.
     if (Date.now() > Date.parse('2026-10-31T23:59:59+06:30')) {
