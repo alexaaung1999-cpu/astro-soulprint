@@ -1,59 +1,88 @@
 /* Draws the bodygraph as an inline SVG string. No libraries.
-   Personality (conscious) = deep emerald, Design (unconscious) = gold. */
+   Style: white rounded centers with a fine gold outline, hollow gold channel tubes,
+   Design (unconscious) in gold on the left, Personality (conscious) in emerald on the right. */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory(require('./hd-data.js'));
   else { root.Soulprint = root.Soulprint || {}; root.Soulprint.bodygraph = factory(root.Soulprint.data); }
 }(typeof self !== 'undefined' ? self : this, function (data) {
   'use strict';
 
-  var COLORS = { personality: '#0d5c47', design: '#c08a2a', track: '#ece6d6', openStroke: '#cdc4ad', ink: '#3b2a1b' };
+  var COLORS = { personality: '#0d5c47', design: '#c08a2a', tube: '#d9c58f', gold: '#c9a24b', openStroke: '#d4bf84' };
 
-  // Shapes of the nine centers (SVG polygon points) and where their name is written.
+  // Shapes of the nine centers (corner points) and how round their corners are.
   var CENTER_SHAPES = {
-    Head:        { points: '220,14 264,86 176,86', round: 24,               label: [220, 66] },
-    Ajna:        { points: '176,112 264,112 220,178', round: 24,            label: [220, 135] },
-    Throat:      { points: '176,212 264,212 264,284 176,284', round: 20,    label: [220, 248] },
-    G:           { points: '220,302 272,350 220,398 168,350', round: 18,    label: [220, 350] },
-    Heart:       { points: '306,316 340,372 272,372', round: 11,            label: [312, 361] },
-    Spleen:      { points: '128,374 128,496 36,435', round: 22,             label: [100, 435] },
-    SolarPlexus: { points: '318,394 318,522 410,458', round: 22,            label: [346, 458] },
-    Sacral:      { points: '176,452 264,452 264,522 176,522', round: 20,    label: [220, 487] },
-    Root:        { points: '176,572 264,572 264,642 176,642', round: 20,    label: [220, 607] }
+    Head:        { points: '223,14 257,68 189,68',                 round: 8 },
+    Ajna:        { points: '189,96 257,96 223,150',                round: 8 },
+    Throat:      { points: '186,188 260,188 260,270 186,270',      round: 11 },
+    G:           { points: '223,288 266,330 223,372 180,330',      round: 9 },
+    Heart:       { points: '302,294 336,352 268,352',              round: 8 },
+    Spleen:      { points: '40,370 120,420 40,472',                round: 9 },
+    SolarPlexus: { points: '406,370 326,420 406,472',              round: 9 },
+    Sacral:      { points: '186,420 260,420 260,492 186,492',      round: 11 },
+    Root:        { points: '186,536 260,536 260,616 186,616',      round: 11 }
   };
 
-  // Where each gate number sits on its center's edge.
+  // Where each gate number sits inside its center.
   var GATE_POS = {
-    64: [196, 86], 61: [220, 86], 63: [244, 86],
-    47: [196, 112], 24: [220, 112], 4: [244, 112], 17: [203, 150], 43: [220, 170], 11: [237, 150],
-    62: [196, 212], 23: [220, 212], 56: [244, 212],
-    16: [176, 228], 20: [176, 262], 35: [264, 226], 12: [264, 248], 45: [264, 270],
-    31: [196, 284], 8: [220, 284], 33: [244, 284],
-    1: [220, 309], 7: [197, 325], 13: [243, 325], 10: [178, 350], 25: [262, 350],
-    15: [197, 375], 2: [220, 392], 46: [243, 375],
-    21: [300, 332], 51: [285, 352], 26: [286, 372], 40: [326, 372],
-    48: [96, 397], 57: [128, 394], 44: [128, 422], 50: [128, 452],
-    32: [65, 453], 28: [87, 467], 18: [110, 482],
-    37: [329, 403], 36: [358, 424], 22: [383, 441], 6: [318, 486],
-    30: [385, 474], 55: [358, 492], 49: [334, 509],
-    5: [196, 452], 14: [220, 452], 29: [244, 452], 34: [176, 470], 27: [176, 500], 59: [264, 486],
-    42: [196, 522], 3: [220, 522], 9: [244, 522],
-    53: [196, 572], 60: [220, 572], 52: [244, 572],
-    58: [176, 588], 38: [176, 606], 54: [176, 624], 19: [264, 588], 39: [264, 606], 41: [264, 624]
+    64: [206, 58], 61: [223, 58], 63: [240, 58],
+    47: [206, 106], 24: [223, 106], 4: [240, 106], 17: [212, 122], 11: [234, 122], 43: [223, 138],
+    62: [203, 198], 23: [223, 198], 56: [243, 198],
+    16: [196, 212], 20: [196, 236], 35: [250, 210], 12: [250, 232], 45: [250, 254],
+    31: [205, 260], 8: [223, 260], 33: [241, 260],
+    1: [223, 302], 7: [205, 317], 13: [241, 317], 10: [192, 331], 25: [254, 331],
+    15: [205, 347], 2: [223, 358], 46: [241, 347],
+    21: [302, 308], 51: [291, 326], 26: [282, 343], 40: [322, 343],
+    48: [62, 384], 57: [84, 399], 44: [106, 414], 50: [104, 430], 18: [88, 442], 28: [70, 454], 32: [54, 464],
+    36: [384, 384], 22: [362, 399], 37: [340, 414], 6: [342, 430], 49: [358, 442], 55: [376, 454], 30: [392, 464],
+    5: [203, 430], 14: [223, 430], 29: [243, 430], 34: [196, 448], 27: [196, 470], 59: [250, 458],
+    42: [203, 482], 3: [223, 482], 9: [243, 482],
+    53: [203, 546], 60: [223, 546], 52: [243, 546],
+    58: [196, 564], 38: [196, 582], 54: [196, 600], 19: [250, 564], 39: [250, 582], 41: [250, 600]
   };
 
-  // Extra bend points for channels that need to travel around a center.
-  var CHANNEL_VIA = {
-    '20-34': [[154, 292], [154, 446]],
-    '26-44': [[250, 414]],
-    '35-36': [[366, 296]],
-    '12-22': [[392, 332]]
+  // Curved channels. "from" is the gate where the curve starts; c = bend (control) points.
+  // Channels not listed here are straight lines.
+  var CURVES = {
+    '10-34': { from: 10, c: [[180, 392]] },
+    '10-57': { from: 10, c: [[136, 352]] },
+    '20-34': { from: 20, c: [[150, 262], [150, 420]] },
+    '20-57': { from: 20, c: [[94, 240], [50, 330]] },
+    '34-57': { from: 34, c: [[130, 432]] },
+    '16-48': { from: 16, c: [[76, 215], [14, 300]] },
+    '35-36': { from: 35, c: [[370, 215], [432, 300]] },
+    '12-22': { from: 12, c: [[352, 236], [396, 330]] },
+    '26-44': { from: 26, c: [[215, 395]] },
+    '27-50': { from: 27, c: [[150, 468]] },
+    '6-59':  { from: 59, c: [[296, 466]] },
+    '18-58': { from: 18, c: [[90, 524], [140, 564]] },
+    '28-38': { from: 28, c: [[68, 545], [130, 582]] },
+    '32-54': { from: 32, c: [[50, 565], [120, 600]] },
+    '19-49': { from: 19, c: [[306, 564], [358, 524]] },
+    '39-55': { from: 39, c: [[316, 582], [378, 545]] },
+    '30-41': { from: 41, c: [[326, 600], [396, 565]] }
   };
 
-  function channelPoints(ch) {
-    var pts = [GATE_POS[ch.a]];
-    (CHANNEL_VIA[ch.key] || []).forEach(function (p) { pts.push(p); });
-    pts.push(GATE_POS[ch.b]);
+  function sampleBezier(p0, ctrl, p3) {
+    var pts = [], n = 30, i, t, u;
+    for (i = 0; i <= n; i++) {
+      t = i / n; u = 1 - t;
+      if (ctrl.length === 1) {
+        pts.push([u * u * p0[0] + 2 * u * t * ctrl[0][0] + t * t * p3[0], u * u * p0[1] + 2 * u * t * ctrl[0][1] + t * t * p3[1]]);
+      } else {
+        pts.push([u * u * u * p0[0] + 3 * u * u * t * ctrl[0][0] + 3 * u * t * t * ctrl[1][0] + t * t * t * p3[0],
+                  u * u * u * p0[1] + 3 * u * u * t * ctrl[0][1] + 3 * u * t * t * ctrl[1][1] + t * t * t * p3[1]]);
+      }
+    }
     return pts;
+  }
+
+  // Points of a channel, running from gate a to gate b.
+  function channelPoints(ch) {
+    var spec = CURVES[ch.key];
+    if (!spec) return [GATE_POS[ch.a], GATE_POS[ch.b]];
+    var other = spec.from === ch.a ? ch.b : ch.a;
+    var pts = sampleBezier(GATE_POS[spec.from], spec.c, GATE_POS[other]);
+    return spec.from === ch.a ? pts : pts.reverse();
   }
 
   function dist(a, b) { return Math.sqrt((a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1])); }
@@ -79,7 +108,7 @@
     return '<polyline points="' + pts.map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ') + '" ' + attrs + '/>';
   }
 
-  // Turns "x,y x,y ..." into a soft, rounded-corner path.
+  // "x,y x,y ..." to a rounded-corner path.
   function roundedPath(pointsText, radius) {
     var pts = pointsText.split(' ').map(function (t) { var a = t.split(','); return [+a[0], +a[1]]; });
     var n = pts.length, d = '';
@@ -97,6 +126,7 @@
   var SHORT = { sun: 'Sun', earth: 'Earth', northNode: 'N Node', southNode: 'S Node', moon: 'Moon', mercury: 'Merc', venus: 'Venus', mars: 'Mars', jupiter: 'Jup', saturn: 'Sat', uranus: 'Ura', neptune: 'Nep', pluto: 'Pluto' };
   var BODY_X = 50;      // the bodygraph is shifted right to make room for the Design column
   var VIEW_W = 534;
+  var VIEW_H = 640;
 
   // One side column: every planet with its gate.line.
   function column(chart, side) {
@@ -112,111 +142,64 @@
     return out.join('');
   }
 
-
-  /* ---------- Flower decoration (kept pale and behind everything) ---------- */
-  var PETAL = { fill: '#f7ead0', stroke: '#c9a24b' }, PETAL_G = { fill: '#dcefe4', stroke: '#2f8f72' };
-
-  function flower(cx, cy, r, rot, tone) {
-    var o = '<g transform="translate(' + cx + ',' + cy + ') rotate(' + rot + ')">';
-    for (var i = 0; i < 5; i++) {
-      o += '<ellipse cx="0" cy="' + (-r * 0.58) + '" rx="' + (r * 0.36) + '" ry="' + (r * 0.58) + '" transform="rotate(' + (i * 72) + ')" fill="' + tone.fill + '" stroke="' + tone.stroke + '" stroke-width="0.9"/>';
-    }
-    return o + '<circle r="' + (r * 0.24) + '" fill="#e5c673" stroke="#c9a24b" stroke-width="0.8"/></g>';
-  }
-  function leaf(x, y, rot, size) {
-    return '<ellipse cx="' + x + '" cy="' + y + '" rx="' + (size * 0.42) + '" ry="' + size + '" transform="rotate(' + rot + ' ' + x + ' ' + y + ')" fill="#cfe8da" stroke="#2f8f72" stroke-width="0.8"/>';
-  }
-  function lotus(cx, baseY) {
-    var petal = 'M0,0 C-10,-14 -10,-32 0,-46 C10,-32 10,-14 0,0Z';
-    var o = '<g transform="translate(' + cx + ',' + baseY + ')">';
-    [[-62, 0.78], [62, 0.78], [-34, 0.92], [34, 0.92], [0, 1]].forEach(function (a) {
-      o += '<path d="' + petal + '" transform="rotate(' + a[0] + ') scale(' + a[1] + ')" fill="#f7ead0" stroke="#c9a24b" stroke-width="1"/>';
-    });
-    return o + '<path d="' + petal + '" transform="scale(0.55)" fill="#ecd9a0" stroke="#c9a24b" stroke-width="0.9"/></g>';
-  }
-  function cornerTop() {
-    return '<path d="M95,56 C58,92 72,134 42,192 S30,262 40,310" fill="none" stroke="#2f8f72" stroke-opacity="0.55" stroke-width="1.3" stroke-linecap="round"/>' +
-      leaf(70, 100, 35, 9) + leaf(58, 150, -40, 9) + leaf(47, 202, 30, 8) + leaf(38, 256, -30, 8) +
-      leaf(76, 56, -55, 9) + leaf(116, 66, 50, 9) +
-      flower(95, 40, 15, 8, PETAL) + flower(66, 82, 8, 30, PETAL_G) + flower(40, 214, 7, 0, PETAL) + flower(40, 312, 8, 20, PETAL_G);
-  }
-  function cornerBottom() {
-    return '<path d="M46,640 C40,615 62,600 92,596" fill="none" stroke="#2f8f72" stroke-opacity="0.55" stroke-width="1.3" stroke-linecap="round"/>' +
-      leaf(54, 622, 25, 8) + leaf(78, 600, -60, 8) + leaf(60, 585, 30, 8) +
-      flower(96, 592, 11, 0, PETAL) + flower(52, 598, 7, 40, PETAL_G);
-  }
-  function floral() {
-    var side = cornerTop() + cornerBottom();
-    return '<g class="bg-flowers" opacity="0.9">' + side +
-      '<g transform="translate(446,0) scale(-1,1)">' + side + '</g>' +
-      '<text x="142" y="26" class="bg-spark">✦</text><text x="304" y="26" class="bg-spark">✦</text>' +
-      '<text x="118" y="344" class="bg-spark sm">✦</text><text x="328" y="590" class="bg-spark sm">✦</text></g>' +
-      lotus(223, 700);
-  }
-
   function render(chart) {
     var out = [];
     var pg = chart.personalityGates, dg = chart.designGates;
     function state(g) { return pg[g] && dg[g] ? 'both' : pg[g] ? 'personality' : dg[g] ? 'design' : 'none'; }
 
-    out.push('<svg class="bodygraph" viewBox="0 0 ' + VIEW_W + ' 706" role="img" aria-labelledby="bgTitle bgDesc" xmlns="http://www.w3.org/2000/svg">');
+    out.push('<svg class="bodygraph" viewBox="0 0 ' + VIEW_W + ' ' + VIEW_H + '" role="img" aria-labelledby="bgTitle bgDesc" xmlns="http://www.w3.org/2000/svg">');
     out.push('<title id="bgTitle">Your Soulprint Chart bodygraph</title>');
     out.push('<desc id="bgDesc">Defined centers: ' + (chart.definedCenterList.map(function (c) { return data.CENTER_NAMES[c]; }).join(', ') || 'none') + '. Defined channels: ' + (chart.channels.map(function (c) { return c.key; }).join(', ') || 'none') + '.</desc>');
     out.push('<defs>' +
       '<linearGradient id="defFill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a6dcc6"/><stop offset="0.55" stop-color="#cfe6c4"/><stop offset="1" stop-color="#f1dfaa"/></linearGradient>' +
-      '<radialGradient id="halo" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#d7ecdf" stop-opacity="0.75"/><stop offset="1" stop-color="#d7ecdf" stop-opacity="0"/></radialGradient>' +
-      '<filter id="soft" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="2.5" stdDeviation="3.2" flood-color="#0d5c47" flood-opacity="0.22"/></filter>' +
+      '<filter id="soft" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="2" stdDeviation="2.6" flood-color="#0d5c47" flood-opacity="0.2"/></filter>' +
       '</defs>');
 
     out.push(column(chart, 'design'));
     out.push(column(chart, 'personality'));
 
     out.push('<g transform="translate(' + BODY_X + ',0)">');
-    out.push('<ellipse cx="223" cy="335" rx="190" ry="335" fill="url(#halo)"/>');
-    out.push(floral());
 
-    // 1. soft tracks for every channel
-    data.CHANNELS.forEach(function (ch) {
-      out.push(polyline(channelPoints(ch), 'fill="none" stroke="' + COLORS.track + '" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"'));
-    });
+    var chans = data.CHANNELS.map(function (ch) { return { ch: ch, pts: channelPoints(ch) }; });
 
-    // 2. coloured halves for activated gates
-    data.CHANNELS.forEach(function (ch) {
-      var h = halves(channelPoints(ch));
+    // 1. hollow gold tubes: gold outline first, then a white core
+    chans.forEach(function (c) { out.push(polyline(c.pts, 'fill="none" stroke="' + COLORS.tube + '" stroke-width="7.4" stroke-linecap="round" stroke-linejoin="round"')); });
+    chans.forEach(function (c) { out.push(polyline(c.pts, 'fill="none" stroke="#fffdf9" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"')); });
+
+    // 2. colour the half of each tube whose gate is active
+    chans.forEach(function (c) {
+      var h = halves(c.pts), ch = c.ch;
       [[ch.a, h[0]], [ch.b, h[1]]].forEach(function (pair) {
         var s = state(pair[0]);
         if (s === 'none') return;
-        var base = 'fill="none" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"';
+        var base = 'fill="none" stroke-width="4.6" stroke-linecap="butt" stroke-linejoin="round"';
         if (s === 'personality') out.push(polyline(pair[1], base + ' stroke="' + COLORS.personality + '"'));
         else if (s === 'design') out.push(polyline(pair[1], base + ' stroke="' + COLORS.design + '"'));
         else {
           out.push(polyline(pair[1], base + ' stroke="' + COLORS.personality + '"'));
-          out.push(polyline(pair[1], 'fill="none" stroke-width="5.5" stroke-linejoin="round" stroke="' + COLORS.design + '" stroke-dasharray="5 5"'));
+          out.push(polyline(pair[1], 'fill="none" stroke-width="4.6" stroke-linejoin="round" stroke="' + COLORS.design + '" stroke-dasharray="4.5 4.5"'));
         }
       });
     });
 
-    // 3. centers with rounded corners
+    // 3. centers
     data.CENTER_ORDER.forEach(function (c) {
       var shape = CENTER_SHAPES[c], on = chart.definedCenters[c];
-      var round = shape.round;
-      out.push('<path d="' + roundedPath(shape.points, round) + '" fill="' + (on ? 'url(#defFill)' : '#fffdf9') + '" stroke="' + (on ? '#c9a24b' : COLORS.openStroke) + '" stroke-width="' + (on ? 1.8 : 1.5) + '" stroke-linejoin="round"' + (on ? ' filter="url(#soft)"' : '') + '/>');
-      out.push('<text x="' + shape.label[0] + '" y="' + shape.label[1] + '" class="bg-center-label' + (on ? ' on' : '') + '" text-anchor="middle">' + data.CENTER_NAMES[c].toUpperCase() + '</text>');
+      out.push('<path d="' + roundedPath(shape.points, shape.round) + '" fill="' + (on ? 'url(#defFill)' : '#ffffff') + '" stroke="' + (on ? '#c9a24b' : COLORS.openStroke) + '" stroke-width="' + (on ? 1.8 : 1.5) + '" stroke-linejoin="round"' + (on ? ' filter="url(#soft)"' : '') + '/>');
     });
 
-    // 4. gate numbers
+    // 4. gate numbers: plain numbers when quiet, coloured discs when active
     Object.keys(GATE_POS).forEach(function (g) {
-      var p = GATE_POS[g], s = state(+g);
+      var p = GATE_POS[g], s = state(+g), r = 8.3;
       if (s === 'none') {
-        out.push('<circle cx="' + p[0] + '" cy="' + p[1] + '" r="7.6" fill="#fffdf9" stroke="#ddd5c0" stroke-width="1"/>');
-        out.push('<text x="' + p[0] + '" y="' + (p[1] + 2.9) + '" class="bg-gate off" text-anchor="middle">' + g + '</text>');
+        out.push('<text x="' + p[0] + '" y="' + (p[1] + 3) + '" class="bg-gate off" text-anchor="middle">' + g + '</text>');
       } else if (s === 'both') {
-        out.push('<circle cx="' + p[0] + '" cy="' + p[1] + '" r="9.6" fill="' + COLORS.design + '" stroke="#fffdf9" stroke-width="1.4"/>');
-        out.push('<path d="M' + p[0] + ',' + (p[1] - 9.6) + ' A9.6,9.6 0 0 1 ' + p[0] + ',' + (p[1] + 9.6) + ' Z" fill="' + COLORS.personality + '"/>');
-        out.push('<text x="' + p[0] + '" y="' + (p[1] + 3.4) + '" class="bg-gate on" text-anchor="middle">' + g + '</text>');
+        out.push('<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + r + '" fill="' + COLORS.design + '" stroke="#fffdf9" stroke-width="1.3"/>');
+        out.push('<path d="M' + p[0] + ',' + (p[1] - r) + ' A' + r + ',' + r + ' 0 0 1 ' + p[0] + ',' + (p[1] + r) + ' Z" fill="' + COLORS.personality + '"/>');
+        out.push('<text x="' + p[0] + '" y="' + (p[1] + 3.2) + '" class="bg-gate on" text-anchor="middle">' + g + '</text>');
       } else {
-        out.push('<circle cx="' + p[0] + '" cy="' + p[1] + '" r="9.6" fill="' + COLORS[s] + '" stroke="#fffdf9" stroke-width="1.4"/>');
-        out.push('<text x="' + p[0] + '" y="' + (p[1] + 3.4) + '" class="bg-gate on" text-anchor="middle">' + g + '</text>');
+        out.push('<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + r + '" fill="' + COLORS[s] + '" stroke="#fffdf9" stroke-width="1.3"/>');
+        out.push('<text x="' + p[0] + '" y="' + (p[1] + 3.2) + '" class="bg-gate on" text-anchor="middle">' + g + '</text>');
       }
     });
 
