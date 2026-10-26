@@ -264,7 +264,8 @@ a.card:hover, a.card:focus-visible { transform: translateY(-3px); box-shadow: 0 
 .step .num { flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--emerald-soft); color: var(--emerald-deep); font-family: var(--serif); font-weight: 600; font-size: 1.2rem; display: grid; place-items: center; }
 .step h4 { font-size: 1.15rem; margin: 0 0 2px; }
 .step p { margin: 0; color: var(--muted); font-size: 0.9rem; }
-.shot { margin: 26px auto 0; max-width: 420px; }
+.testimonials { display: grid; gap: 14px; margin-top: 26px; }
+.shot { margin: 0 auto; max-width: 420px; width: 100%; }
 .shot img { border-radius: 20px; border: 1px solid var(--gold-line); box-shadow: var(--shadow); background: var(--white); }
 .shot figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 8px; }
 .thanks { font-family: var(--serif); font-size: 1.6rem; line-height: 1.35; max-width: 520px; margin: 0 auto 12px; }

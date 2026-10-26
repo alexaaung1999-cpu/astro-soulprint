@@ -15,7 +15,7 @@ Multi-page site: `index.html`, five category pages, `roadmap.html`, and `style.c
 
 - Prices, descriptions: the category page (e.g. `aligned-love.html`; search for `class="price"`).  Add a THB price with
   `<span class="alt">· 1,234 THB</span>`.
-- Testimonials: add `testimonial-1.png` (shown in the Contact section of `index.html`) to `images/testimonials/`.
+- Testimonials: add `testimonial-1.jpg` … `testimonial-5.jpg` (shown in the Contact section of `index.html`) to `images/testimonials/`; to add more, copy one `<figure>` line in `index.html`.
 - Colours: the `:root` block at the top of `style.css`.
 - Header, menu and footer: edit once in `_includes/header.html` / `_includes/footer.html`; every page picks it up.
 - The five categories (menu, footer links): `_data/categories.yml`.
