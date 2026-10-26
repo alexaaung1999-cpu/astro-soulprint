@@ -20,7 +20,7 @@ Click the file on github.com, click the pencil icon, edit, then **Commit changes
 
 | What | File | Notes |
 |------|------|-------|
-| Package buttons, Messenger and Facebook links | `js/config.js` | Only change the text between the quote marks. `../#core` means "the Soulprint Core section of the main site". |
+| Package buttons, Messenger and Facebook links | `js/config.js` | Only change the text between the quote marks. `../soulprint-core.html` means "the Soulprint Core page of the main site". |
 | Burmese text | `js/content.js` | Under each English paragraph is a line `my: ''`. Type Burmese between the quotes. It appears automatically. |
 | Colours | `css/style.css` (top, the `:root` block) | The emerald is `--emerald`. Change it to match your logo exactly. |
 | Logo | upload a square `logo.png` into `soulprint-chart/assets/` | It shows in the top bar. If the file is missing, the top bar just shows your name. |
