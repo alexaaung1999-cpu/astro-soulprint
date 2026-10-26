@@ -7,8 +7,16 @@ const CONFIG = {
   // Delivery time shown on the thank-you message.
   deliveryDefault: "3 days",
   deliveryLonger: "5 to 7 days",
-  // Packages that take the longer time (names must match the dropdown exactly).
-  longerPackages: ["Ultimate Bundle", "Cosmic Roadmap"]
+  // Full charts, cosmic transit readings and bundles take the longer time (names must match the dropdown exactly).
+  longerPackages: [
+    "Birth Chart — Full Chart",
+    "Human Design — Full Chart",
+    "Transit — 3 Months",
+    "Transit — 6 Months",
+    "Progressed Chart",
+    "Ultimate Bundle",
+    "Cosmic Roadmap"
+  ]
 };
 
 (function () {
