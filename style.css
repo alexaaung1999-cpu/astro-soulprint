@@ -350,3 +350,11 @@ a.card:hover, a.card:focus-visible { transform: translateY(-3px); box-shadow: 0 
 .long .exchange { margin: 16px 0 6px; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-text); font-weight: 600; }
 .long .sparkles { margin-bottom: 12px; }
 .long .closing { color: var(--emerald-deep); font-family: var(--serif); font-size: 1.15rem; line-height: 1.4; }
+
+/* hint under "what's inside" links */
+small[lang="my"] { display: block; font-size: 0.78rem; font-weight: 400; opacity: 0.85; line-height: 1.7; }
+.btn small[lang="my"] { margin-top: 2px; }
+.more-info summary small[lang="my"] { color: var(--muted); }
+.about-my { text-align: left; }
+.about-my h2, .about-my .label { text-align: center; }
+.about-my .sparkles { margin: 4px 0 14px; }
