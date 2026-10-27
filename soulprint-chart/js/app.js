@@ -70,7 +70,7 @@
     for (i = 0; i < 60; i++) mins.push([String(i), (i < 10 ? '0' : '') + i]);
     fillSelect($('day'), 'Day', days);
     fillSelect($('month'), 'Month', MONTHS.map(function (m, idx) { return [String(idx + 1), m]; }));
-    fillSelect($('hour'), 'Hour', hours);
+    fillSelect($('hour'), 'Hr', hours);
     fillSelect($('minute'), 'Min', mins);
 
     var sel = $('country');
@@ -439,6 +439,7 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('bgZoom').hidden) closeZoom(); });
     $('footMessenger').href = CFG.messengerUrl || $('footMessenger').href;
     $('footFacebook').href = CFG.facebookUrl || $('footFacebook').href;
+    if (CFG.messengerUrl) $('heroMessenger').href = CFG.messengerUrl;
     $('footYear').textContent = new Date().getFullYear();
   }
 

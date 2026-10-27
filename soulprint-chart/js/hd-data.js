@@ -1,4 +1,4 @@
-/* Static tables for the Soulprint Chart: the 64-gate wheel, the 36 channels and the 9 centers.
+/* Static tables for the chart: the 64-gate wheel, the 36 channels and the 9 centers.
    Works both in the browser (window.Soulprint.data) and in Node (require). */
 (function (root, factory) {
   var data = factory();

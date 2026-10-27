@@ -1,4 +1,4 @@
-# Soulprint Chart (free calculator)
+# Human Design Chart (free calculator)
 
 A free chart calculator for Astro Soulprint by Alex. Plain HTML, CSS and JavaScript. No build step, no paid services,
 and nothing a visitor types ever leaves their phone.
@@ -26,7 +26,7 @@ Click the file on github.com, click the pencil icon, edit, then **Commit changes
 | Logo | upload a square `logo.png` into `soulprint-chart/assets/` | It shows in the top bar. If the file is missing, the top bar just shows your name. |
 | Incarnation Cross names | `js/content.js`, `CROSS_NAMES` | The page shows the cross type and its four gates. Add names there if you want them. |
 
-**If a change doesn't show on your phone:** your phone may keep an old copy. Open `index.html`, and change `?v=12` to `?v=13` (every place it appears), then save. That forces a fresh copy.
+**If a change doesn't show on your phone:** your phone may keep an old copy. Open `index.html`, and change `?v=13` to `?v=14` (every place it appears), then save. That forces a fresh copy.
 
 ## The 4 Arrows (Variables)
 
