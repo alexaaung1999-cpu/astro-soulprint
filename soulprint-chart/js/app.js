@@ -379,6 +379,22 @@
     showResults(inputs, chart);
   }
 
+  /* ---------- enlarge the chart ---------- */
+
+  function openZoom() {
+    var svg = $('bodygraph').querySelector('svg');
+    if (!svg) return;
+    $('bgZoomBody').innerHTML = '';
+    $('bgZoomBody').appendChild(svg.cloneNode(true));
+    $('bgZoom').hidden = false;
+    document.body.style.overflow = 'hidden';
+    $('bgZoomClose').focus();
+  }
+  function closeZoom() {
+    $('bgZoom').hidden = true;
+    document.body.style.overflow = '';
+  }
+
   /* ---------- start ---------- */
 
   function init() {
@@ -387,6 +403,9 @@
     $('chartForm').addEventListener('submit', onSubmit);
     $('againBtn').addEventListener('click', function () { setTimeout(function () { $('name').focus(); }, 400); });
     $('year').addEventListener('input', function () { this.value = this.value.replace(/\D/g, '').slice(0, 4); });
+    $('bodygraph').addEventListener('click', openZoom);
+    $('bgZoomClose').addEventListener('click', closeZoom);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('bgZoom').hidden) closeZoom(); });
     $('footMessenger').href = CFG.messengerUrl || $('footMessenger').href;
     $('footFacebook').href = CFG.facebookUrl || $('footFacebook').href;
     $('footYear').textContent = new Date().getFullYear();
