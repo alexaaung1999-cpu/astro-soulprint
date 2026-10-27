@@ -1,4 +1,4 @@
-/* Soulprint Chart calculation engine.
+/* Human Design Chart calculation engine.
    Pure JavaScript, no network calls. Uses the open-source "astronomy-engine" library (MIT)
    for planet positions. Works in the browser (window.Soulprint.calc) and in Node (require). */
 (function (root, factory) {

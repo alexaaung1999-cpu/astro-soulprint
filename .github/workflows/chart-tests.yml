@@ -1,4 +1,4 @@
-name: Soulprint Chart tests
+name: Human Design Chart tests
 on:
   push:
     paths: ['soulprint-chart/**']
