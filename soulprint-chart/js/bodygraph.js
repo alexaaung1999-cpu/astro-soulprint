@@ -175,6 +175,32 @@
     return out.join('');
   }
 
+
+  // The four arrows (Variables) beside the Head: Design on the left, Personality on the right.
+  // The arrow points left for tones 1-3 and right for tones 4-6; the number is colour.tone.
+  function arrowShape(cx, cy, side, color) {
+    var pts = side === 'left'
+      ? [[cx - 23, cy], [cx - 9, cy - 10], [cx - 9, cy - 4.6], [cx + 23, cy - 4.6], [cx + 23, cy + 4.6], [cx - 9, cy + 4.6], [cx - 9, cy + 10]]
+      : [[cx + 23, cy], [cx + 9, cy - 10], [cx + 9, cy - 4.6], [cx - 23, cy - 4.6], [cx - 23, cy + 4.6], [cx + 9, cy + 4.6], [cx + 9, cy + 10]];
+    return '<polygon points="' + pts.map(function (p) { return p[0] + ',' + p[1]; }).join(' ') + '" fill="' + color + '" stroke="' + color + '" stroke-width="1.6" stroke-linejoin="round"/>';
+  }
+  var ARROW_SLOTS = [
+    { key: 'digestion', label: 'DIGESTION', cx: 157, cy: 58, color: COLORS.design },
+    { key: 'environment', label: 'ENVIRONMENT', cx: 157, cy: 96, color: COLORS.design },
+    { key: 'motivation', label: 'MOTIVATION', cx: 318, cy: 58, color: COLORS.personality },
+    { key: 'perspective', label: 'PERSPECTIVE', cx: 318, cy: 96, color: COLORS.personality }
+  ];
+  function arrows(chart) {
+    if (!chart.variables) return '';
+    return ARROW_SLOTS.map(function (a) {
+      var v = chart.variables[a.key];
+      var textX = a.cx + (v.side === 'left' ? 6 : -6);
+      return arrowShape(a.cx, a.cy, v.side, a.color) +
+        '<text x="' + textX + '" y="' + (a.cy + 2.7) + '" class="bg-arrow-num" text-anchor="middle">' + v.color + '.' + v.tone + '</text>' +
+        '<text x="' + a.cx + '" y="' + (a.cy + 18.5) + '" class="bg-arrow-label" text-anchor="middle" fill="' + a.color + '">' + a.label + '</text>';
+    }).join('');
+  }
+
   function render(chart) {
     var out = [];
     var pg = chart.personalityGates, dg = chart.designGates;
@@ -188,6 +214,7 @@
     out.push('<path d="' + SILHOUETTE + '" fill="' + COLORS.skin + '" stroke="' + COLORS.skin + '" stroke-width="1.5" stroke-linejoin="round"/>');
     out.push(column(chart, 'design'));
     out.push(column(chart, 'personality'));
+    out.push(arrows(chart));
 
     out.push('<g>');
 

@@ -135,12 +135,87 @@
     'left': { name: 'Left Angle Cross', en: 'A shared path: your purpose unfolds through other people and what you build together.', my: '' }
   };
 
-  // Optional: add cross names here if you want them shown, keyed by the four gates "PSun/PEarth|DSun/DEarth".
-  // Example:  '13/7|1/2': 'Cross of the Sphinx'
-  var CROSS_NAMES = {};
+  // ---- Not-Self theme and Signature, by type ----
+  var NOT_SELF = {
+    'generator': { name: 'Frustration', en: 'Frustration is a sign your energy is going somewhere that does not light you up. When it appears, treat it as a kind message to pause and check what you are really responding to.', my: '' },
+    'manifesting-generator': { name: 'Frustration and Anger', en: 'Frustration, and sometimes a flash of anger, can appear when you push a plan or feel held back. Take it as a signal to slow down, feel what you actually want, and respond instead of forcing.', my: '' },
+    'projector': { name: 'Bitterness', en: 'Bitterness can build when your guidance goes unseen, or when you push to be heard before you are asked. Let it remind you that rest and waiting for recognition are not wasted time.', my: '' },
+    'manifestor': { name: 'Anger', en: 'Anger often rises when others block your path, or when you have not shared what you are about to do. It is a cue to inform the people around you and to protect your freedom to act.', my: '' },
+    'reflector': { name: 'Disappointment', en: 'Disappointment can come when you absorb the energy of the wrong people or places. Let it guide you toward spaces and company that feel genuinely good.', my: '' }
+  };
+  var SIGNATURE = {
+    'generator': { name: 'Satisfaction', en: 'Satisfaction is the quiet yes you feel when your energy is going into something that is truly yours. Notice it as your sign that you are on track.', my: '' },
+    'manifesting-generator': { name: 'Satisfaction and Peace', en: 'Satisfaction, with a sense of inner peace, is your sign that you are following your response and moving at your own speed.', my: '' },
+    'projector': { name: 'Success', en: 'Success is feeling recognised and invited for what you offer. It is your sign that your guidance is landing in the right place.', my: '' },
+    'manifestor': { name: 'Peace', en: 'Peace is the calm that settles when you act on your impulses and keep the people around you informed. It is your sign that you are in flow.', my: '' },
+    'reflector': { name: 'Surprise', en: 'Surprise is the delight of staying open to the world and seeing what unfolds. It is your sign that you are in the right surroundings.', my: '' }
+  };
+
+  // ---- The four arrows (Variables) ----
+  // Colour names are in order for colours 1 to 6. The arrow points left for tones 1-3 and right for tones 4-6.
+  // "sides" and "subtypes" are left empty on purpose: fill them in from your own training material and they will
+  // appear on the page. Example:  sides: { left: 'Active', right: 'Passive' }
+  //   subtypes: [ { left: 'Consecutive', right: 'Alternating' }, ... six entries, one per colour ... ]
+  function blankSubtypes() { return [{ left: '', right: '' }, { left: '', right: '' }, { left: '', right: '' }, { left: '', right: '' }, { left: '', right: '' }, { left: '', right: '' }]; }
+  var VARIABLES = {
+    digestion: {
+      title: 'Digestion', where: 'Top-left arrow', blurb: 'How your body is happiest taking in food and information.',
+      colors: ['Appetite', 'Taste', 'Thirst', 'Touch', 'Sound', 'Light'], sides: { left: '', right: '' }, subtypes: blankSubtypes(), my: ''
+    },
+    environment: {
+      title: 'Environment', where: 'Bottom-left arrow', blurb: 'The kind of surroundings where you feel most at ease.',
+      colors: ['Caves', 'Markets', 'Kitchens', 'Mountains', 'Valleys', 'Shores'], sides: { left: '', right: '' }, subtypes: blankSubtypes(), my: ''
+    },
+    motivation: {
+      title: 'Motivation', where: 'Top-right arrow', blurb: 'What quietly drives your mind.',
+      colors: ['Fear', 'Hope', 'Desire', 'Need', 'Guilt', 'Innocence'], sides: { left: '', right: '' }, subtypes: blankSubtypes(), my: ''
+    },
+    perspective: {
+      title: 'Perspective', where: 'Bottom-right arrow', blurb: 'How you naturally look at and sort what you notice.',
+      colors: ['Survival', 'Possibility', 'Power', 'Wanting', 'Probability', 'Personal'], sides: { left: '', right: '' }, subtypes: blankSubtypes(), my: ''
+    }
+  };
+
+  // ---- Incarnation cross names ----
+  // A cross is named by the Personality Sun gate plus its angle (Right Angle, Juxtaposition or Left Angle).
+  var RAC_FAMILIES = [
+    ['the Sphinx', [13, 2, 7, 1]], ['Explanation', [49, 23, 4, 43]], ['Contagion', [30, 8, 29, 14]], ['the Sleeping Phoenix', [55, 20, 59, 34]],
+    ['Planning', [37, 16, 40, 9]], ['Consciousness', [63, 35, 64, 5]], ['Rulership', [22, 45, 47, 26]], ['the Eden', [36, 12, 6, 11]],
+    ['the Vessel of Love', [25, 15, 46, 10]], ['Service', [17, 52, 18, 58]], ['Tension', [21, 39, 48, 38]], ['Penetration', [51, 53, 57, 54]],
+    ['the Maya', [42, 62, 32, 61]], ['Laws', [3, 56, 50, 60]], ['the Unexpected', [27, 31, 28, 41]], ['the Four Ways', [24, 33, 44, 19]]
+  ];
+  var LAC_FAMILIES = [
+    ['Masks', [13, 7]], ['Revolution', [49, 4]], ['Industry', [30, 29]], ['Spirit', [55, 59]], ['Migration', [37, 40]], ['Dominion', [63, 64]],
+    ['Informing', [22, 47]], ['the Plane', [36, 6]], ['Healing', [25, 46]], ['Upheaval', [17, 18]], ['Endeavor', [21, 48]], ['the Clarion', [51, 57]],
+    ['Limitation', [42, 32]], ['Wishes', [3, 50]], ['Alignment', [27, 28]], ['Incarnation', [24, 44]], ['Defiance', [2, 1]], ['Dedication', [23, 43]],
+    ['Uncertainty', [8, 14]], ['Duality', [20, 34]], ['Identification', [16, 9]], ['Separation', [35, 5]], ['Confrontation', [45, 26]], ['Education', [12, 11]],
+    ['Prevention', [15, 10]], ['Demands', [52, 58]], ['Individualism', [39, 38]], ['Cycles', [53, 54]], ['Obscuration', [62, 61]], ['Distraction', [56, 60]],
+    ['the Alpha', [31, 41]], ['Refinement', [33, 19]]
+  ];
+  var JC_NAMES = {
+    13: 'Listening', 49: 'Principles', 30: 'Fates', 55: 'Moods', 37: 'Bargains', 63: 'Doubts', 22: 'Grace', 36: 'Crisis', 25: 'Innocence', 17: 'Opinions',
+    21: 'Control', 51: 'Shock', 42: 'Completion', 3: 'Mutation', 27: 'Caring', 24: 'Rationalization', 2: 'the Driver', 23: 'Assimilation', 8: 'Contribution',
+    20: 'the Now', 16: 'Experimentation', 35: 'Experience', 45: 'Possession', 12: 'Articulation', 15: 'Extremes', 52: 'Stillness', 39: 'Provocation',
+    53: 'Beginnings', 62: 'Detail', 56: 'Stimulation', 31: 'Influence', 33: 'Retreat', 7: 'Interaction', 4: 'Formulation', 29: 'Commitment', 59: 'Strategy',
+    40: 'Denial', 64: 'Confusion', 47: 'Oppression', 6: 'Conflict', 46: 'Serendipity', 18: 'Correction', 48: 'Depth', 57: 'Intuition', 32: 'Conservation',
+    50: 'Values', 28: 'Risks', 44: 'Alertness', 1: 'Self-Expression', 43: 'Insight', 14: 'Empowering', 34: 'Power', 9: 'Focus', 5: 'Habits', 26: 'the Trickster',
+    11: 'Ideas', 10: 'Behavior', 58: 'Vitality', 38: 'Opposition', 54: 'Ambition', 61: 'Thinking', 60: 'Limitation', 41: 'Fantasy', 19: 'Need'
+  };
+  var CROSS_NAMES = { right: {}, left: {}, juxtaposition: JC_NAMES };
+  RAC_FAMILIES.forEach(function (f) { f[1].forEach(function (g) { CROSS_NAMES.right[g] = f[0]; }); });
+  LAC_FAMILIES.forEach(function (f) { f[1].forEach(function (g) { CROSS_NAMES.left[g] = f[0]; }); });
+  var ANGLE_LABELS = { right: 'Right Angle Cross', juxtaposition: 'Juxtaposition Cross', left: 'Left Angle Cross' };
+
+  // e.g. crossTitle('left', 64) -> "Left Angle Cross of Dominion"
+  function crossTitle(angle, personalitySunGate) {
+    var name = CROSS_NAMES[angle] && CROSS_NAMES[angle][personalitySunGate];
+    return ANGLE_LABELS[angle] + (name ? ' of ' + name : '');
+  }
 
   return {
     TYPES: TYPES, STRATEGIES: STRATEGIES, AUTHORITIES: AUTHORITIES, PROFILE_LINES: PROFILE_LINES,
-    PROFILES: PROFILES, DEFINITIONS: DEFINITIONS, CROSS_ANGLES: CROSS_ANGLES, CROSS_NAMES: CROSS_NAMES
+    PROFILES: PROFILES, DEFINITIONS: DEFINITIONS, CROSS_ANGLES: CROSS_ANGLES, CROSS_NAMES: CROSS_NAMES,
+    NOT_SELF: NOT_SELF, SIGNATURE: SIGNATURE, VARIABLES: VARIABLES, RAC_FAMILIES: RAC_FAMILIES, LAC_FAMILIES: LAC_FAMILIES,
+    ANGLE_LABELS: ANGLE_LABELS, crossTitle: crossTitle
   };
 }));
