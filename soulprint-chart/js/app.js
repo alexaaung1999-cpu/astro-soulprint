@@ -270,7 +270,7 @@
     return '<article class="card info-card"><span class="tag">' + esc(label) + '</span>' +
       '<h3>' + esc(title) + '</h3>' +
       (subtitle ? '<p class="card-sub">' + esc(subtitle) + '</p>' : '') +
-      '<p>' + esc(text) + '</p>' + myBlock(my) + '</article>';
+      (text ? '<p>' + esc(text) + '</p>' : '') + myBlock(my) + '</article>';
   }
 
   function profileTitle(key) {
@@ -291,13 +291,14 @@
       defSub = chart.groups.map(function (g) { return g.map(function (c) { return D.CENTER_NAMES[c]; }).join(', '); }).join('  |  ');
     }
 
+    // Explanations for these are kept in content.js but not shown. To show one again, pass its text (and .my) as the last two arguments.
     $('summaryCards').innerHTML =
-      infoCard('Type', type.name, '', type.en, type.my) +
-      infoCard('Strategy', strat.name, '', strat.en, strat.my) +
-      infoCard('Inner Authority', auth.name, '', auth.en, auth.my) +
-      infoCard('Profile', profileTitle(chart.profile), '', prof.en, prof.my) +
-      infoCard('Definition', def.name, defSub, def.en, def.my) +
-      infoCard('Incarnation Cross', crossTitle, crossGates, angle.en, angle.my) +
+      infoCard('Type', type.name, '', '', '') +
+      infoCard('Strategy', strat.name, '', '', '') +
+      infoCard('Inner Authority', auth.name, '', '', '') +
+      infoCard('Profile', profileTitle(chart.profile), '', '', '') +
+      infoCard('Definition', def.name, defSub, '', '') +
+      infoCard('Incarnation Cross', crossTitle, crossGates, '', '') +
       infoCard('Not-Self Theme', notSelf.name, '', notSelf.en, notSelf.my) +
       infoCard('Signature', sig.name, '', sig.en, sig.my);
   }
@@ -313,14 +314,12 @@
       return '<div class="var-row"><span class="var-arrow var-' + v.side + (key === 'digestion' || key === 'environment' ? ' var-design' : ' var-personality') + '" aria-hidden="true"></span><div>' +
         '<p class="var-name">' + esc(def.title) + ' <span class="muted">· ' + esc(def.where) + '</span></p>' +
         '<p class="var-title">' + esc(title) + '</p><p class="muted var-line">' + esc(line) + '</p>' +
-        '<p class="muted">' + esc(def.blurb) + '</p>' + myBlock(def.my) + '</div></div>';
+        '</div></div>';
     }).join('');
     var link = CFG.arrowsLink || {};
     $('variablesCard').innerHTML = '<span class="tag">4 Arrows</span><h3>Your 4 Arrows</h3>' +
-      '<p class="muted">The four arrows beside the Head of your chart show how your body and mind like to work: digestion, environment, motivation and perspective. Each arrow points left or right.</p>' +
       '<div class="var-grid">' + rows + '</div>' +
-      (link.href ? '<p class="var-cta"><a class="btn" href="' + esc(link.href) + '">' + esc(link.label || 'Get my 4 Arrows reading') + '</a></p>' : '') +
-      '<p class="fine var-note">The arrows are the most time-sensitive part of a chart, so an estimated birth time can change them.</p>';
+      (link.href ? '<p class="var-cta"><a class="btn" href="' + esc(link.href) + '">' + esc(link.label || 'Get my 4 Arrows reading') + '</a></p>' : '');
   }
 
   function renderCenters(chart) {
@@ -329,7 +328,6 @@
     }
     $('centersCard').innerHTML =
       '<h3>Your centers</h3>' +
-      '<p class="muted">Defined centers are where your energy is steady and reliable. Open centers are where you take in, and sometimes amplify, the energy of the people around you.</p>' +
       '<div class="two-col"><div><h4><span class="dot dot-def"></span>Defined</h4>' + list(chart.definedCenterList) + '</div>' +
       '<div><h4><span class="dot dot-open"></span>Open</h4>' + list(chart.openCenterList) + '</div></div>';
   }
@@ -337,15 +335,14 @@
   function renderChannels(chart) {
     var body;
     if (!chart.channels.length) {
-      body = '<p class="muted">You have no complete channels. This is the pattern of a Reflector, who stays wonderfully open to the world.</p>';
+      body = '<p class="muted">None</p>';
     } else {
       body = '<ul class="sparkle-list">' + chart.channels.map(function (ch) {
         return '<li><span class="chan-key">' + ch.a + '&ndash;' + ch.b + '</span> <strong>' + esc(ch.name) + '</strong> <span class="muted">' +
           esc(D.CENTER_NAMES[ch.centers[0]]) + ' &harr; ' + esc(D.CENTER_NAMES[ch.centers[1]]) + '</span></li>';
       }).join('') + '</ul>';
     }
-    $('channelsCard').innerHTML = '<h3>Your defined channels</h3>' +
-      '<p class="muted">A channel is a bridge between two centers. It forms when both of its gates are active.</p>' + body;
+    $('channelsCard').innerHTML = '<h3>Your defined channels</h3>' + body;
   }
 
   function renderGates(chart, tz) {
@@ -357,7 +354,7 @@
         '<td><span class="gl gl-d">' + d.gate + '.' + d.line + '</span></td></tr>';
     }).join('');
     $('gatesCard').innerHTML = '<h3>Your activated gates</h3>' +
-      '<p class="muted">Each number shows the gate and line. Personality is your birth moment. Design is the moment about 88 days earlier when the Sun was 88&deg; behind its birth position (around ' + esc(designDay) + ').</p>' +
+      '<p class="muted">Design date: ' + esc(designDay) + '</p>' +
       '<table class="gates"><thead><tr><th></th><th scope="col"><span class="dot dot-p"></span>Personality</th><th scope="col"><span class="dot dot-d"></span>Design</th></tr></thead><tbody>' + rows + '</tbody></table>';
   }
 
