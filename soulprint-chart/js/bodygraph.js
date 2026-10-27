@@ -156,7 +156,7 @@
   };
 
   var SHORT = { sun: 'Sun', earth: 'Earth', northNode: 'N Node', southNode: 'S Node', moon: 'Moon', mercury: 'Merc', venus: 'Venus', mars: 'Mars', jupiter: 'Jup', saturn: 'Sat', uranus: 'Ura', neptune: 'Nep', pluto: 'Pluto' };
-  var VB = '16 24 443 400';          // the whole picture, in ref units
+  var VB = '16 24 443 430';          // the whole picture, in ref units
   var PILL_W = 70, PILL_H = 15.4, PILL_GAP = 17.2, COL_TOP = 50;
 
   function column(chart, side) {
@@ -199,27 +199,42 @@
   }
 
 
-  // A soft, many-layered lotus bloom behind the bodygraph (drawn before everything else).
-  function lotusPetal(len, wid) {
-    return 'M0,0 C' + (wid * 0.95) + ',' + (-len * 0.22) + ' ' + (wid * 0.6) + ',' + (-len * 0.78) + ' 0,' + (-len) +
-      ' C' + (-wid * 0.6) + ',' + (-len * 0.78) + ' ' + (-wid * 0.95) + ',' + (-len * 0.22) + ' 0,0 Z';
+  // A closed lotus bud standing on water, in soft translucent greens (shape: a classic lotus bud with
+  // overlapping petals and two small side petals; colour: pale glassy lotus-leaf green). Drawn behind everything.
+  function petal(B, T, w, skew) {
+    var dx = T[0] - B[0], dy = T[1] - B[1], L = Math.sqrt(dx * dx + dy * dy), nx = -dy / L, ny = dx / L;
+    function pt(t, k) { return [B[0] + dx * t + nx * k, B[1] + dy * t + ny * k]; }
+    function f(p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }
+    var c1 = pt(0.22, w), c2 = pt(0.74, w * 0.72), d1 = pt(0.22, -w * skew), d2 = pt(0.74, -w * 0.72 * skew);
+    var veins = '';
+    [-0.62, -0.31, 0, 0.31, 0.62].forEach(function (k) {
+      var c = pt(0.5, k * w * 1.25);
+      veins += '<path d="M' + f(B) + ' Q' + f(c) + ' ' + f(pt(0.97, 0)) + '" fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="0.55"/>';
+    });
+    return { d: 'M' + f(B) + ' C' + f(c1) + ' ' + f(c2) + ' ' + f(T) + ' C' + f(d2) + ' ' + f(d1) + ' ' + f(B) + ' Z', veins: veins };
   }
   function lotus() {
-    var cx = 237.5, cy = 214;
-    var rings = [
-      { n: 16, len: 192, wid: 38, off: 0,    fill: '#fbeadb', stroke: '#e8d4a6', op: 0.7 },
-      { n: 16, len: 156, wid: 34, off: 0.5,  fill: '#e4f2ea', stroke: '#c3e0d0', op: 0.7 },
-      { n: 12, len: 118, wid: 31, off: 0,    fill: '#fdf0de', stroke: '#e8d4a6', op: 0.7 },
-      { n: 8,  len: 80,  wid: 27, off: 0.5,  fill: '#f6e3cc', stroke: '#e3cc96', op: 0.65 }
+    var base = 392, out = [];
+    // [base x, tip x, tip y, width, skew, fill]
+    var petals = [
+      [150, 52, 292, 34, 0.9, '#d7eadf'], [324, 423, 292, 34, 0.9, '#d7eadf'],              // small side petals
+      [175, 128, 172, 62, 1, '#d4e9dc'], [300, 347, 172, 62, 1, '#d4e9dc'],                 // wide side petals
+      [237, 224, 24, 74, 1, '#e3f1e9'], [238, 254, 32, 74, 1, '#e3f1e9'],                   // tall back petals
+      [203, 205, 62, 86, 1, '#cfe6d9'], [273, 276, 70, 86, 1, '#c7e2d3']                    // big front petals
     ];
-    var out = ['<g transform="translate(' + cx + ',' + cy + ')">'];
-    rings.forEach(function (r) {
-      var step = 360 / r.n;
-      for (var i = 0; i < r.n; i++) {
-        out.push('<path d="' + lotusPetal(r.len, r.wid) + '" transform="rotate(' + ((i + r.off) * step).toFixed(2) + ')" fill="' + r.fill + '" stroke="' + r.stroke + '" stroke-width="0.8" stroke-linejoin="round" fill-opacity="' + r.op + '"/>');
-      }
+    // soft reflection in the water (fainter mirror of the bud, then ripples)
+    out.push('<g opacity="0.22"><g transform="translate(0,' + (2 * base + 6) + ') scale(1,-0.45) translate(0,' + (-base * 0) + ')">' +
+      '<path d="M237.5,24 C275,70 330,170 372,300 C380,335 372,372 340,392 L135,392 C103,372 95,335 103,300 C145,170 200,70 237.5,24 Z" fill="#cfe6d9" transform="translate(0,0)"/></g></g>');
+    [[0, 404, 250], [0, 413, 215], [0, 422, 175], [0, 431, 135], [0, 440, 95]].forEach(function (r, i) {
+      var x0 = 237.5 - r[2] / 2, x1 = 237.5 + r[2] / 2, y = r[1];
+      out.push('<path d="M' + x0 + ',' + y + ' q' + (r[2] / 8) + ',-3 ' + (r[2] / 4) + ',0 t' + (r[2] / 4) + ',0 t' + (r[2] / 4) + ',0 t' + (r[2] / 4) + ',0" fill="none" stroke="#a9d1bd" stroke-opacity="' + (0.7 - i * 0.1) + '" stroke-width="1.1" stroke-linecap="round"/>');
     });
-    return out.join('') + '</g>';
+    petals.forEach(function (p) {
+      var pe = petal([p[0], base], [p[1], p[2]], p[3], p[4]);
+      out.push('<path d="' + pe.d + '" fill="' + p[5] + '" fill-opacity="0.82" stroke="#9cc8b2" stroke-opacity="0.8" stroke-width="0.9" stroke-linejoin="round"/>');
+      out.push(pe.veins);
+    });
+    return out.join('');
   }
 
   function render(chart) {
