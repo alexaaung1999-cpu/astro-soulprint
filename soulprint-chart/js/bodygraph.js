@@ -9,7 +9,7 @@
 }(typeof self !== 'undefined' ? self : this, function (data) {
   'use strict';
 
-  var COLORS = { personality: '#0d5c47', design: '#c08a2a', edge: '#d8a93c', core: '#fcefc4', outline: '#d4a640', skin: '#f6e0c9' };
+  var COLORS = { personality: '#0d5c47', design: '#c08a2a', edge: '#d8a93c', core: '#fcefc4', outline: '#d4a640' };
   var CX = 475;                       // mirror line: x' = CX - x
   function M(p) { return [CX - p[0], p[1]]; }
   function Mseg(seg) { return seg.map(M); }
@@ -155,9 +155,6 @@
     Root: roundedRect(216.5, 351, 40.5, 40, 5)
   };
 
-  // Soft seated figure behind the bodygraph, traced from the reference picture.
-  var SILHOUETTE = 'M234.6,33.6 L237.4,32.9 L240.9,34.8 L259.5,56.5 L267.9,79.5 L269.2,90.5 L267.6,99.5 L260.7,117.5 L254.9,125.5 L253.7,129.5 L253.5,136.5 L255.3,144.5 L259.5,149.9 L265.5,154.4 L275.5,156.3 L284.5,159.9 L293.5,161.2 L307.5,167.3 L311.6,170.7 L318.9,188.5 L320.1,225.5 L343.1,275.5 L371.5,296.2 L390.5,303.2 L411.5,294.2 L420.7,283.8 L425.5,282.3 L428.7,284.6 L430.7,288.5 L431.6,303.5 L433.2,306.8 L436.5,307.7 L444.4,304.8 L446.5,306.1 L434.7,318.5 L436.5,320.6 L444.2,322.8 L445.2,324.5 L443.4,326.2 L429.5,327.2 L418.5,333.5 L406.5,325.2 L400.3,324.6 L399.7,328.5 L403.5,338.5 L402.9,346.5 L400.8,351.1 L391.5,359.7 L380.5,366.4 L355.5,389.2 L338.5,396.8 L316.5,400.4 L283.5,409.9 L261.5,413.5 L235.5,414.5 L192.5,410.1 L158.5,400.1 L141.5,398.8 L125.5,393.9 L112.5,384.3 L93.5,366.2 L81.5,359.4 L77.8,355.5 L71.3,343.5 L71.2,338.5 L74.6,327.5 L73.8,324.2 L69.5,323.6 L57.5,332.6 L51.1,334.2 L45.5,327.5 L33.5,325.9 L30.2,324.1 L30.2,322.2 L36.2,320.8 L37.1,318.5 L25.5,307.4 L28.5,304.7 L38.5,309.1 L41.4,308.6 L42.9,288.5 L47.5,283.2 L53.3,284.3 L63.9,295.3 L72.4,297.4 L79.7,303.4 L83.5,304.1 L101.5,297.3 L131.3,275.2 L153.7,224.5 L155.3,189.5 L156.8,181.5 L161.1,171.7 L164.5,167.8 L174.5,162.1 L193.5,158.6 L210.5,153.3 L214.9,150.3 L219.4,143.5 L220.5,137.5 L218.8,126.5 L211.7,111.5 L204.4,100.5 L203.7,90.5 L209.6,65.5 L215.9,54.9 Z';
-
   var SHORT = { sun: 'Sun', earth: 'Earth', northNode: 'N Node', southNode: 'S Node', moon: 'Moon', mercury: 'Merc', venus: 'Venus', mars: 'Mars', jupiter: 'Jup', saturn: 'Sat', uranus: 'Ura', neptune: 'Nep', pluto: 'Pluto' };
   var VB = '16 24 443 400';          // the whole picture, in ref units
   var PILL_W = 70, PILL_H = 15.4, PILL_GAP = 17.2, COL_TOP = 50;
@@ -201,6 +198,30 @@
     }).join('');
   }
 
+
+  // A soft, many-layered lotus bloom behind the bodygraph (drawn before everything else).
+  function lotusPetal(len, wid) {
+    return 'M0,0 C' + (wid * 0.95) + ',' + (-len * 0.22) + ' ' + (wid * 0.6) + ',' + (-len * 0.78) + ' 0,' + (-len) +
+      ' C' + (-wid * 0.6) + ',' + (-len * 0.78) + ' ' + (-wid * 0.95) + ',' + (-len * 0.22) + ' 0,0 Z';
+  }
+  function lotus() {
+    var cx = 237.5, cy = 214;
+    var rings = [
+      { n: 16, len: 192, wid: 38, off: 0,    fill: '#fbeadb', stroke: '#e8d4a6', op: 0.7 },
+      { n: 16, len: 156, wid: 34, off: 0.5,  fill: '#e4f2ea', stroke: '#c3e0d0', op: 0.7 },
+      { n: 12, len: 118, wid: 31, off: 0,    fill: '#fdf0de', stroke: '#e8d4a6', op: 0.7 },
+      { n: 8,  len: 80,  wid: 27, off: 0.5,  fill: '#f6e3cc', stroke: '#e3cc96', op: 0.65 }
+    ];
+    var out = ['<g transform="translate(' + cx + ',' + cy + ')">'];
+    rings.forEach(function (r) {
+      var step = 360 / r.n;
+      for (var i = 0; i < r.n; i++) {
+        out.push('<path d="' + lotusPetal(r.len, r.wid) + '" transform="rotate(' + ((i + r.off) * step).toFixed(2) + ')" fill="' + r.fill + '" stroke="' + r.stroke + '" stroke-width="0.8" stroke-linejoin="round" fill-opacity="' + r.op + '"/>');
+      }
+    });
+    return out.join('') + '</g>';
+  }
+
   function render(chart) {
     var out = [];
     var pg = chart.personalityGates, dg = chart.designGates;
@@ -211,7 +232,7 @@
     out.push('<desc id="bgDesc">Defined centers: ' + (chart.definedCenterList.map(function (c) { return data.CENTER_NAMES[c]; }).join(', ') || 'none') + '. Defined channels: ' + (chart.channels.map(function (c) { return c.key; }).join(', ') || 'none') + '.</desc>');
     out.push('<defs><linearGradient id="defFill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a6dcc6"/><stop offset="0.55" stop-color="#cfe6c4"/><stop offset="1" stop-color="#f1dfaa"/></linearGradient></defs>');
 
-    out.push('<path d="' + SILHOUETTE + '" fill="' + COLORS.skin + '" stroke="' + COLORS.skin + '" stroke-width="1.5" stroke-linejoin="round"/>');
+    out.push(lotus());
     out.push(column(chart, 'design'));
     out.push(column(chart, 'personality'));
     out.push(arrows(chart));
