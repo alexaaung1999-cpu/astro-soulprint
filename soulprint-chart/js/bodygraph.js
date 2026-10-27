@@ -9,7 +9,7 @@
 }(typeof self !== 'undefined' ? self : this, function (data) {
   'use strict';
 
-  var COLORS = { personality: '#0d5c47', design: '#c08a2a', edge: '#d8a93c', core: '#fcefc4', outline: '#d4a640' };
+  var COLORS = { personality: '#343724', design: '#c08a2a', edge: '#d8a93c', core: '#fcefc4', outline: '#d4a640' };
   var CX = 475;                       // mirror line: x' = CX - x
   function M(p) { return [CX - p[0], p[1]]; }
   function Mseg(seg) { return seg.map(M); }
@@ -245,7 +245,7 @@
     out.push('<svg class="bodygraph" viewBox="' + VB + '" role="img" aria-labelledby="bgTitle bgDesc" xmlns="http://www.w3.org/2000/svg">');
     out.push('<title id="bgTitle">Your Human Design Chart bodygraph</title>');
     out.push('<desc id="bgDesc">Defined centers: ' + (chart.definedCenterList.map(function (c) { return data.CENTER_NAMES[c]; }).join(', ') || 'none') + '. Defined channels: ' + (chart.channels.map(function (c) { return c.key; }).join(', ') || 'none') + '.</desc>');
-    out.push('<defs><linearGradient id="defFill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a6dcc6"/><stop offset="0.55" stop-color="#cfe6c4"/><stop offset="1" stop-color="#f1dfaa"/></linearGradient></defs>');
+    out.push('<defs><linearGradient id="defFill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c9d5b2"/><stop offset="0.55" stop-color="#e1e5c2"/><stop offset="1" stop-color="#f1dfaa"/></linearGradient></defs>');
 
     out.push(lotus());
     out.push(column(chart, 'design'));
