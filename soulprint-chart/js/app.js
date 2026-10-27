@@ -291,7 +291,7 @@
       defSub = chart.groups.map(function (g) { return g.map(function (c) { return D.CENTER_NAMES[c]; }).join(', '); }).join('  |  ');
     }
 
-    // Explanations for these are kept in content.js but not shown. To show one again, pass its text (and .my) as the last two arguments.
+    // Explanations are kept in content.js but not shown. To show one again, pass its text (and .my) as the last two arguments.
     $('summaryCards').innerHTML =
       infoCard('Type', type.name, '', '', '') +
       infoCard('Strategy', strat.name, '', '', '') +
@@ -299,8 +299,8 @@
       infoCard('Profile', profileTitle(chart.profile), '', '', '') +
       infoCard('Definition', def.name, defSub, '', '') +
       infoCard('Incarnation Cross', crossTitle, crossGates, '', '') +
-      infoCard('Not-Self Theme', notSelf.name, '', notSelf.en, notSelf.my) +
-      infoCard('Signature', sig.name, '', sig.en, sig.my);
+      infoCard('Not-Self Theme', notSelf.name, '', '', '') +
+      infoCard('Signature', sig.name, '', '', '');
   }
 
   function renderVariables(chart) {
