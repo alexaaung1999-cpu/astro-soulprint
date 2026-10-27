@@ -11,6 +11,13 @@ window.Soulprint.config = {
     { label: 'See all Human Design packages', href: '../index.html#packages' }
   ],
 
+  // The "Your 4 Arrows" card. Change the label/link to your 4 Arrows package.
+  arrowsLink: { label: 'Get my HD 4 Arrows reading', href: '../soulprint-core.html' },
+
+  // true = show the colour names (Appetite, Caves, Fear...) in the 4 Arrows card.
+  // false = show only the arrow directions and invite people to book the 4 Arrows reading.
+  showVariableDetails: true,
+
   messengerUrl: 'https://m.me/astrosoulprintbyalex',
   facebookUrl: 'https://www.facebook.com/profile.php?id=61561494154512'
 };

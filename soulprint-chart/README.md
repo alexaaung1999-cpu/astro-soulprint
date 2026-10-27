@@ -26,7 +26,19 @@ Click the file on github.com, click the pencil icon, edit, then **Commit changes
 | Logo | upload a square `logo.png` into `soulprint-chart/assets/` | It shows in the top bar. If the file is missing, the top bar just shows your name. |
 | Incarnation Cross names | `js/content.js`, `CROSS_NAMES` | The page shows the cross type and its four gates. Add names there if you want them. |
 
-**If a change doesn't show on your phone:** your phone may keep an old copy. Open `index.html`, and change `?v=7` to `?v=8` (every place it appears), then save. That forces a fresh copy.
+**If a change doesn't show on your phone:** your phone may keep an old copy. Open `index.html`, and change `?v=8` to `?v=9` (every place it appears), then save. That forces a fresh copy.
+
+## The 4 Arrows (Variables)
+
+The chart shows the four arrows beside the Head and a "Your 4 Arrows" card. The arrow directions, colour numbers and colour names
+(Appetite, Caves, Fear and so on) are calculated for you. Tones 1 to 3 point left and 4 to 6 point right.
+
+- **Fill in the detailed names** (for example Consecutive / Alternating): open `js/content.js`, find `VARIABLES`, and type the names
+  between the quote marks in `sides` and `subtypes`. They appear on the page automatically. They are empty on purpose so the page
+  never shows a name you have not confirmed.
+- **Selling the 4 Arrows reading:** in `js/config.js`, `arrowsLink` is the button under the card. If you would rather not show the
+  colour names for free, set `showVariableDetails: false`. The page then shows only the arrow directions and invites people to book.
+- The arrows are the most time-sensitive part of a chart. A birth time that is off by an hour or two can change an arrow.
 
 ## How accurate is it?
 

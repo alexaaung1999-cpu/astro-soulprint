@@ -183,7 +183,13 @@
     var input = $('city'), ul = $('citySuggest');
     input.addEventListener('input', function () {
       state.selectedCity = null;
-      showSuggest(searchCities(input.value));
+      var items = searchCities(input.value);
+      // Typed the whole name already? Accept it and close the list so it never covers the button.
+      if (items.length && fold(items[0].name) === fold(input.value) && (items.length === 1 || fold(items[1].name) !== fold(input.value))) {
+        chooseCity(items[0]);
+        return;
+      }
+      showSuggest(items);
     });
     input.addEventListener('keydown', function (e) {
       var items = ul._items || [];
@@ -275,19 +281,46 @@
   function renderSummary(chart) {
     var type = T.TYPES[chart.type], strat = T.STRATEGIES[chart.strategy], auth = T.AUTHORITIES[chart.authority];
     var prof = T.PROFILES[chart.profile], def = T.DEFINITIONS[chart.definition], angle = T.CROSS_ANGLES[chart.cross.angle];
+    var notSelf = T.NOT_SELF[chart.type], sig = T.SIGNATURE[chart.type];
     var x = chart.cross;
-    var gates = x.personalitySun + '/' + x.personalityEarth + ' | ' + x.designSun + '/' + x.designEarth;
-    var crossName = T.CROSS_NAMES[gates];
-    var crossTitle = crossName ? crossName : angle.name;
-    var crossSub = (crossName ? angle.name + ' · ' : '') + 'Gates ' + gates;
+    var crossTitle = T.crossTitle(x.angle, x.personalitySun);
+    var crossGates = '(' + x.personalitySun + '/' + x.personalityEarth + ' | ' + x.designSun + '/' + x.designEarth + ')';
+
+    var defSub = '';
+    if (chart.groups.length > 1) {
+      defSub = chart.groups.map(function (g) { return g.map(function (c) { return D.CENTER_NAMES[c]; }).join(', '); }).join('  |  ');
+    }
 
     $('summaryCards').innerHTML =
       infoCard('Type', type.name, '', type.en, type.my) +
       infoCard('Strategy', strat.name, '', strat.en, strat.my) +
       infoCard('Inner Authority', auth.name, '', auth.en, auth.my) +
       infoCard('Profile', profileTitle(chart.profile), '', prof.en, prof.my) +
-      infoCard('Definition', def.name, '', def.en, def.my) +
-      infoCard('Incarnation Cross', crossTitle, crossSub, angle.en, angle.my);
+      infoCard('Definition', def.name, defSub, def.en, def.my) +
+      infoCard('Incarnation Cross', crossTitle, crossGates, angle.en, angle.my) +
+      infoCard('Not-Self Theme', notSelf.name, '', notSelf.en, notSelf.my) +
+      infoCard('Signature', sig.name, '', sig.en, sig.my);
+  }
+
+  function renderVariables(chart) {
+    var rows = ['digestion', 'environment', 'motivation', 'perspective'].map(function (key) {
+      var def = T.VARIABLES[key], v = chart.variables[key];
+      var showDetail = CFG.showVariableDetails !== false;
+      var arrowWord = v.side === 'left' ? 'Left arrow' : 'Right arrow';
+      var sideName = def.sides[v.side], sub = def.subtypes[v.color - 1][v.side];
+      var title = showDetail ? def.colors[v.color - 1] : 'Included in the 4 Arrows reading';
+      var line = arrowWord + (sideName ? ' · ' + sideName : '') + (showDetail && sub ? ' · ' + sub : '') + (showDetail ? ' · ' + v.color + '.' + v.tone : '');
+      return '<div class="var-row"><span class="var-arrow var-' + v.side + (key === 'digestion' || key === 'environment' ? ' var-design' : ' var-personality') + '" aria-hidden="true"></span><div>' +
+        '<p class="var-name">' + esc(def.title) + ' <span class="muted">· ' + esc(def.where) + '</span></p>' +
+        '<p class="var-title">' + esc(title) + '</p><p class="muted var-line">' + esc(line) + '</p>' +
+        '<p class="muted">' + esc(def.blurb) + '</p>' + myBlock(def.my) + '</div></div>';
+    }).join('');
+    var link = CFG.arrowsLink || {};
+    $('variablesCard').innerHTML = '<span class="tag">4 Arrows</span><h3>Your 4 Arrows</h3>' +
+      '<p class="muted">The four arrows beside the Head of your chart show how your body and mind like to work: digestion, environment, motivation and perspective. Each arrow points left or right.</p>' +
+      '<div class="var-grid">' + rows + '</div>' +
+      (link.href ? '<p class="var-cta"><a class="btn" href="' + esc(link.href) + '">' + esc(link.label || 'Get my 4 Arrows reading') + '</a></p>' : '') +
+      '<p class="fine var-note">The arrows are the most time-sensitive part of a chart, so an estimated birth time can change them.</p>';
   }
 
   function renderCenters(chart) {
@@ -350,6 +383,7 @@
 
     $('bodygraph').innerHTML = S.bodygraph.render(chart);
     renderSummary(chart);
+    renderVariables(chart);
     renderCenters(chart);
     renderChannels(chart);
     renderGates(chart, inputs.timeZone);

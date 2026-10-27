@@ -95,7 +95,15 @@
     var within = off - idx * data.GATE_WIDTH;
     var line = Math.floor(within / data.LINE_WIDTH) + 1;
     if (line > 6) line = 6;
-    return { lon: lon, gate: data.GATE_WHEEL[idx], line: line };
+    // Each line splits into 6 colours, each colour into 6 tones, each tone into 5 bases.
+    var inLine = within - (line - 1) * data.LINE_WIDTH;
+    var colorWidth = data.LINE_WIDTH / 6, toneWidth = colorWidth / 6, baseWidth = toneWidth / 5;
+    var color = Math.min(6, Math.floor(inLine / colorWidth) + 1);
+    var inColor = inLine - (color - 1) * colorWidth;
+    var tone = Math.min(6, Math.floor(inColor / toneWidth) + 1);
+    var inTone = inColor - (tone - 1) * toneWidth;
+    var base = Math.min(5, Math.floor(inTone / baseWidth) + 1);
+    return { lon: lon, gate: data.GATE_WHEEL[idx], line: line, color: color, tone: tone, base: base };
   }
 
   function allLongitudes(date) {
@@ -180,7 +188,6 @@
     if (defined.Throat) {
       data.MOTORS.forEach(function (m) { if (defined[m] && groupOf[m] === groupOf.Throat) motorToThroat = true; });
     }
-    // For Manifestor: a motor other than the Sacral (Sacral would make it a Generator type anyway).
     var type;
     if (defined.Sacral) type = motorToThroat ? 'manifesting-generator' : 'generator';
     else if (definedList.length === 0) type = 'reflector';
@@ -212,7 +219,17 @@
     else if (pl <= 4) angle = 'right';
     else angle = 'left';
 
+    // The four arrows (Variables). Tones 1-3 point left, 4-6 point right.
+    function arrow(a) { return { color: a.color, tone: a.tone, base: a.base, side: a.tone <= 3 ? 'left' : 'right', gate: a.gate, line: a.line }; }
+    var variables = {
+      digestion: arrow(design.sun),            // top left:     Design Sun
+      environment: arrow(design.northNode),    // bottom left:  Design North Node
+      motivation: arrow(personality.sun),      // top right:    Personality Sun
+      perspective: arrow(personality.northNode) // bottom right: Personality North Node
+    };
+
     return {
+      variables: variables,
       activeGates: active,
       personalityGates: pGates,
       designGates: dGates,
